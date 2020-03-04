@@ -34,7 +34,7 @@ public class Main {
                 contactBook.setContacts(contacts);
                 System.out.println("Loaded contacts from file: " + givenFilename);
             } catch (IOException | ClassNotFoundException e) {
-                System.out.println("No contacts loaded. New contacts will be saved to \"" + givenFilename + "\"");
+                System.out.printf("No contacts loaded. New contacts will be saved to \"%s\"\n", givenFilename);
             }
         }
     }

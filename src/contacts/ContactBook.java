@@ -54,7 +54,7 @@ class ContactBook {
                     searchContact();
                     break;
                 case "COUNT":
-                    System.out.println("The Phone Book has " + contacts.size() + " records.");
+                    System.out.printf("The Phone Book has %d records.\n", contacts.size());
                     break;
                 case "EXIT":
                     exitMenu = true;
@@ -159,7 +159,7 @@ class ContactBook {
 
             for (Field filedAbleToEdit : fieldsAbleToEdit) {
                 if (filedAbleToEdit.getName().equals(fieldToEdit)) {
-                    System.out.print("Enter " + filedAbleToEdit + ": ");
+                    System.out.printf("Enter %s: ", filedAbleToEdit);
                     if ("number".equals(filedAbleToEdit.getName())) {
                         contact.setValueToField(filedAbleToEdit.getName(), filterPhoneNumber(scanner.nextLine()));
                     } else {
@@ -206,7 +206,7 @@ class ContactBook {
         List<Field> fieldsAbleToEdit = contact.getAllFieldNames();
 
         for (Field filedAbleToEdit : fieldsAbleToEdit) {
-            System.out.print("Enter " + filedAbleToEdit.getName() + ": ");
+            System.out.printf("Enter %s: ", filedAbleToEdit.getName());
             if ("number".equals(filedAbleToEdit.getName())) {
                 contact.setValueToField(filedAbleToEdit.getName(), filterPhoneNumber(scanner.nextLine()));
             } else {
@@ -222,7 +222,7 @@ class ContactBook {
     }
 
     private void searchContact() {
-        System.out.println("Enter searchContact query: ");
+        System.out.print("Enter search query: ");
         Pattern searchQuery = Pattern.compile(".*" + scanner.nextLine() + ".*", Pattern.CASE_INSENSITIVE);
         ArrayList<Contact> searchResult = new ArrayList<>();
 
@@ -241,7 +241,7 @@ class ContactBook {
             }
         }
 
-        System.out.println("Found " + searchResult.size() + " results: ");
+        System.out.printf("Found %d results: \n", searchResult.size());
 
         for (int i = 0; i < searchResult.size(); i++) {
             searchResult.get(i).showListItems(i + 1);

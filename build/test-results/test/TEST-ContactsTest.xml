@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ContactsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-04T10:38:32" hostname="Rodriguess-Air.beeline" time="1.545">
+<testsuite name="ContactsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-04T13:52:21" hostname="Rodriguess-Air.beeline" time="1.285">
   <properties/>
-  <testcase name="start" classname="ContactsTest" time="1.545"/>
+  <testcase name="start" classname="ContactsTest" time="1.285"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 
@@ -54,8 +54,8 @@ Surname: Smith
 Birth date: [no data]
 Gender: [no data]
 Number: 123 456 789
-Time created: 2020-03-04T13:38:33
-Time last edit: 2020-03-04T13:38:33
+Time created: 2020-03-04T16:52:22
+Time last edit: 2020-03-04T16:52:22
 
 [contact] Enter action (edit, delete, menu): >menu
 
@@ -78,8 +78,8 @@ Contact added.
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-04T13:38:33
-Time last edit: 2020-03-04T13:38:33
+Time created: 2020-03-04T16:52:22
+Time last edit: 2020-03-04T16:52:22
 
 [contact] Enter action (edit, delete, menu): >menu
 
@@ -107,8 +107,8 @@ Surname: Smith
 Birth date: [no data]
 Gender: [no data]
 Number: 123 456 789
-Time created: 2020-03-04T13:38:33
-Time last edit: 2020-03-04T13:38:33
+Time created: 2020-03-04T16:52:23
+Time last edit: 2020-03-04T16:52:23
 
 [contact] Enter action (edit, delete, menu): >edit
 Select a field (name, surname, number, birth, gender): >gender
@@ -129,8 +129,8 @@ Surname: Smith
 Birth date: [no data]
 Gender: M
 Number: 123 456 789
-Time created: 2020-03-04T13:38:33
-Time last edit: 2020-03-04T13:38:33
+Time created: 2020-03-04T16:52:23
+Time last edit: 2020-03-04T16:52:23
 
 [contact] Enter action (edit, delete, menu): >menu
 
@@ -153,8 +153,8 @@ Contact added.
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-04T13:38:33
-Time last edit: 2020-03-04T13:38:33
+Time created: 2020-03-04T16:52:23
+Time last edit: 2020-03-04T16:52:23
 
 [contact] Enter action (edit, delete, menu): >edit
 Select a field (organization, address, number): >address
@@ -171,8 +171,8 @@ Saved
 Organization name: Pizza Shop
 Address: Wall St 2
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-04T13:38:33
-Time last edit: 2020-03-04T13:38:33
+Time created: 2020-03-04T16:52:23
+Time last edit: 2020-03-04T16:52:23
 
 [contact] Enter action (edit, delete, menu): >menu
 
@@ -208,8 +208,7 @@ Enter number: >+0 (123) 456-789-9999
 Contact added.
 
 [menu] Enter action (add, list, searchContact, count, exit): >search
-Enter searchContact query: 
->pizz
+Enter search query: >pizz
 Found 2 results: 
 1. Pizza Shop
 2. PizzaNuts
@@ -217,8 +216,8 @@ Found 2 results:
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-04T13:38:33
-Time last edit: 2020-03-04T13:38:33
+Time created: 2020-03-04T16:52:23
+Time last edit: 2020-03-04T16:52:23
 
 [contact] Enter action (edit, delete, menu): >menu
 
@@ -254,8 +253,7 @@ Enter number: >+0 (123) 456-789-9999
 Contact added.
 
 [menu] Enter action (add, list, searchContact, count, exit): >search
-Enter searchContact query: 
->s
+Enter search query: >s
 Found 5 results: 
 1. Pizza Shop
 2. Pizza Shop
@@ -266,8 +264,8 @@ Found 5 results:
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-04T13:38:33
-Time last edit: 2020-03-04T13:38:33
+Time created: 2020-03-04T16:52:23
+Time last edit: 2020-03-04T16:52:23
 
 [contact] Enter action (edit, delete, menu): >menu
 
@@ -303,8 +301,7 @@ Enter number: >+0 (123) 456-781-9999
 Contact added.
 
 [menu] Enter action (add, list, searchContact, count, exit): >search
-Enter searchContact query: 
->789
+Enter search query: >789
 Found 2 results: 
 1. Pizza Shop
 2. John Smith
@@ -312,8 +309,8 @@ Found 2 results:
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-04T13:38:33
-Time last edit: 2020-03-04T13:38:33
+Time created: 2020-03-04T16:52:23
+Time last edit: 2020-03-04T16:52:23
 
 [contact] Enter action (edit, delete, menu): >menu
 
