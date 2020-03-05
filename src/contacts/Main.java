@@ -30,6 +30,7 @@ public class Main {
             String givenFilename = args[0];
             contactBook.setFilename(givenFilename);
             try {
+                @SuppressWarnings("unchecked")
                 ArrayList<Contact> contacts = (ArrayList<Contact>) SerializationUtils.deserialize(givenFilename);
                 contactBook.setContacts(contacts);
                 System.out.println("Loaded contacts from file: " + givenFilename);
