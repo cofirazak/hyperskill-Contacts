@@ -1,13 +1,6 @@
 package contacts;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.IOException;
-import java.io.FileNotFoundException;
+import java.io.*;
 
 /**
  * Util class for easy serialisation/deserialization of objects.
@@ -16,13 +9,13 @@ class SerializationUtils {
     /**
      * Serialize the given object to the file.
      *
-     * @param obj object for serialisation.
+     * @param obj      object for serialisation.
      * @param fileName filename to save serialized object.
-     * @throws IOException if an I/O error occurs while writing stream header
-     * @throws SecurityException if untrusted subclass illegally overrides security-sensitive methods
-     * or if a security manager exists and its checkWrite method denies write access to the file.
+     * @throws IOException           if an I/O error occurs while writing stream header
+     * @throws SecurityException     if untrusted subclass illegally overrides security-sensitive methods
+     *                               or if a security manager exists and its checkWrite method denies write access to the file.
      * @throws FileNotFoundException if the file exists but is a directory rather than a regular file,
-     * does not exist but cannot be created, or cannot be opened for any other reason.
+     *                               does not exist but cannot be created, or cannot be opened for any other reason.
      */
     static void serialize(Object obj, String fileName) throws IOException {
         FileOutputStream fos = new FileOutputStream(fileName);
@@ -37,11 +30,11 @@ class SerializationUtils {
      *
      * @param fileName name of file with serialised object.
      * @return Object
-     * @throws IOException if an I/O error occurs while reading stream header
-     * @throws SecurityException if a security manager exists and its checkRead method denies read access to the file.
+     * @throws IOException            if an I/O error occurs while reading stream header
+     * @throws SecurityException      if a security manager exists and its checkRead method denies read access to the file.
      * @throws ClassNotFoundException if Class of a serialized object cannot be found.
-     * @throws FileNotFoundException if the file does not exist, is a directory rather than a regular file,
-     * or for some other reason cannot be opened for reading.
+     * @throws FileNotFoundException  if the file does not exist, is a directory rather than a regular file,
+     *                                or for some other reason cannot be opened for reading.
      */
     static Object deserialize(String fileName) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(fileName);

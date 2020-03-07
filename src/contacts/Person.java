@@ -1,8 +1,8 @@
 package contacts;
 
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 
 /**
  * Concrete realisation of Contact abstraction.
@@ -15,6 +15,75 @@ class Person extends Contact {
     private Gender gender;
 
     @Override
+    String[] getEditableFields() {
+        return Arrays.stream(EditableFields.values()).map(Enum::toString).toArray(String[]::new);
+    }
+
+    @Override
+    void setFieldByName(String fieldName, String newValue) {
+        switch (fieldName) {
+            case "NAME":
+                setName(newValue);
+                break;
+            case "SURNAME":
+                setSurname(newValue);
+                break;
+            case "BIRTHDATE":
+                setBirthDate(tryCastStrToDate(newValue));
+                break;
+            case "GENDER":
+                setGender(tryCastStrToGender(newValue));
+                break;
+            case "NUMBER":
+                setNumber(filterPhoneNumber(newValue));
+                break;
+        }
+    }
+
+    void setName(String name) {
+        this.name = name;
+    }
+
+    void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    LocalDate tryCastStrToDate(String inputDate) {
+        try {
+            return LocalDate.parse(inputDate);
+        } catch (DateTimeParseException e) {
+            ContactBook.TERMINAL_COMMON.showBadDate();
+            return null;
+        }
+    }
+
+    void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    Gender tryCastStrToGender(String inputGender) {
+        try {
+            return Gender.valueOf(inputGender);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+    }
+
+    @Override
+    void showEditableFields() {
+        ContactBook.TERMINAL_COMMON.showPersonEditableFields();
+    }
+
+    @Override
+    void showContactsListItem(int index) {
+        ContactBook.TERMINAL_COMMON.showListItem(index, name, surname);
+    }
+
+    @Override
     public String toString() {
         String birthDate = this.birthDate == null ? "[no data]" : this.birthDate.toString();
         String gender = this.gender == null ? "[no data]" : this.gender.toString();
@@ -24,53 +93,11 @@ class Person extends Contact {
                 "\nTime created: " + creationDateTime + "\nTime last edit: " + lastEditDateTime;
     }
 
-    @Override
-    void setValueToField(String fieldName, String newValue) {
-        try {
-            Field field = getFieldByName(this.getClass(), fieldName);
-
-            switch (field.getType().getName()) {
-                case "java.lang.String":
-                    field.set(this, newValue);
-                    break;
-                case "java.time.LocalDate":
-                    field.set(this, tryCastStrToDate(newValue));
-                    break;
-                case "contacts.Gender":
-                    field.set(this, tryCastStrToGender(newValue));
-                    break;
-                default:
-            }
-
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            System.out.println("Oops, something went wrong.");
-        }
+    enum Gender {
+        M, F
     }
 
-    @Override
-    void showEditMenuFields() {
-        System.out.print("Select a field (name, surname, number, birth, gender): ");
-    }
-
-    @Override
-    void showListItems(int index) {
-        System.out.printf("%d. %s %s\n", index, name, surname);
-    }
-
-    private LocalDate tryCastStrToDate(String inputDate) {
-        try {
-            return LocalDate.parse(inputDate);
-        } catch (DateTimeParseException e) {
-            System.out.println("Bad birth date!");
-            return null;
-        }
-    }
-
-    private Gender tryCastStrToGender(String inputGender) {
-        try {
-            return Gender.valueOf(inputGender.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            return null;
-        }
+    enum EditableFields {
+        NAME, SURNAME, BIRTHDATE, GENDER, NUMBER
     }
 }

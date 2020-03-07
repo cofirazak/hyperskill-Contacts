@@ -1,49 +1,49 @@
 [1;31m
 Start test 1[0m
 
-=[menu] Enter action (add, list, searchContact, count, exit): >exit
+6[menu] Enter action (add, list, search, count, exit): >exit
 [1;31m
 Start test 2[0m
 
-=[menu] Enter action (add, list, searchContact, count, exit): >count
+6[menu] Enter action (add, list, search, count, exit): >count
 The Phone Book has 0
  records.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >exit
+6[menu] Enter action (add, list, search, count, exit): >exit
 [1;31m
 Start test 3[0m
 
-=[menu] Enter action (add, list, searchContact, count, exit): >add
+6[menu] Enter action (add, list, search, count, exit): >add
 
 5[add] Enter the type (person, organization) or back: >person
 Enter name: >John
 Enter surname: >Smith
-Enter 	birthDate: >
-Bad birth date!
-Enter gender: >
-Enter number: >123 456 789
+Enter birth date(yyyy-MM-dd): >
+Bad date given!
+Enter gender(M|F): >
+Enter phone number: >123 456 789
 Contact added.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >count
+6[menu] Enter action (add, list, search, count, exit): >count
 The Phone Book has 1
  records.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >exit
+6[menu] Enter action (add, list, search, count, exit): >exit
 [1;31m
 Start test 4[0m
 
-=[menu] Enter action (add, list, searchContact, count, exit): >add
+6[menu] Enter action (add, list, search, count, exit): >add
 
 5[add] Enter the type (person, organization) or back: >person
 Enter name: >John
 Enter surname: >Smith
-Enter 	birthDate: >
-Bad birth date!
-Enter gender: >
-Enter number: >123 456 789
+Enter birth date(yyyy-MM-dd): >
+Bad date given!
+Enter gender(M|F): >
+Enter phone number: >123 456 789
 Contact added.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >list
+6[menu] Enter action (add, list, search, count, exit): >list
 1. John Smith
 
 &[list] Enter action ([number], back): >1
@@ -52,24 +52,24 @@
 Birth date: [no data]
 Gender: [no data]
 Number: 123 456 789
-"Time created: 2020-03-04T16:52:22
-#Time last edit: 2020-03-04T16:52:22
+"Time created: 2020-03-07T21:49:04
+#Time last edit: 2020-03-07T21:49:04
 
 -[contact] Enter action (edit, delete, menu): >menu
 
-=[menu] Enter action (add, list, searchContact, count, exit): >exit
+6[menu] Enter action (add, list, search, count, exit): >exit
 [1;31m
 Start test 5[0m
 
-=[menu] Enter action (add, list, searchContact, count, exit): >add
+6[menu] Enter action (add, list, search, count, exit): >add
 
 5[add] Enter the type (person, organization) or back: >organization
-Enter organizationName: >Pizza Shop
+Enter name: >Pizza Shop
 Enter address: >Wall St. 1
-Enter number: >+0 (123) 456-789-9999
+Enter phone number: >+0 (123) 456-789-9999
 Contact added.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >list
+6[menu] Enter action (add, list, search, count, exit): >list
 1. 
 Pizza Shop
 
@@ -77,27 +77,27 @@ Pizza Shop
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-"Time created: 2020-03-04T16:52:22
-#Time last edit: 2020-03-04T16:52:22
+)Time created: 2020-03-07T21:49:04.932284
+Time last edit: null
 
 -[contact] Enter action (edit, delete, menu): >menu
 
-=[menu] Enter action (add, list, searchContact, count, exit): >exit
+6[menu] Enter action (add, list, search, count, exit): >exit
 [1;31m
 Start test 6[0m
 
-=[menu] Enter action (add, list, searchContact, count, exit): >add
+6[menu] Enter action (add, list, search, count, exit): >add
 
 5[add] Enter the type (person, organization) or back: >person
 Enter name: >John
 Enter surname: >Smith
-Enter 	birthDate: >
-Bad birth date!
-Enter gender: >
-Enter number: >123 456 789
+Enter birth date(yyyy-MM-dd): >
+Bad date given!
+Enter gender(M|F): >
+Enter phone number: >123 456 789
 Contact added.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >list
+6[menu] Enter action (add, list, search, count, exit): >list
 1. John Smith
 
 &[list] Enter action ([number], back): >1
@@ -106,20 +106,27 @@ Pizza Shop
 Birth date: [no data]
 Gender: [no data]
 Number: 123 456 789
-"Time created: 2020-03-04T16:52:23
-#Time last edit: 2020-03-04T16:52:23
+"Time created: 2020-03-07T21:49:05
+#Time last edit: 2020-03-07T21:49:05
 
 -[contact] Enter action (edit, delete, menu): >edit
-7Select a field (name, surname, number, birth, gender): >gender
-!Wrong input entered. Try again...
-!Wrong input entered. Try again...
-!Wrong input entered. Try again...
-Enter .private contacts.Gender contacts.Person.gender: >M
-Saved
+
+7Select a field (name, surname, birth, gender, number): 
+>gender
+Enter gender: >M
+Contact saved.
+Name: John
+Surname: Smith
+Birth date: [no data]
+
+Gender: M
+Number: 123 456 789
+"Time created: 2020-03-07T21:49:05
+#Time last edit: 2020-03-07T21:49:05
 
 -[contact] Enter action (edit, delete, menu): >menu
 
-=[menu] Enter action (add, list, searchContact, count, exit): >list
+6[menu] Enter action (add, list, search, count, exit): >list
 1. John Smith
 
 &[list] Enter action ([number], back): >1
@@ -129,24 +136,24 @@ Pizza Shop
 
 Gender: M
 Number: 123 456 789
-"Time created: 2020-03-04T16:52:23
-#Time last edit: 2020-03-04T16:52:23
+"Time created: 2020-03-07T21:49:05
+#Time last edit: 2020-03-07T21:49:05
 
 -[contact] Enter action (edit, delete, menu): >menu
 
-=[menu] Enter action (add, list, searchContact, count, exit): >exit
+6[menu] Enter action (add, list, search, count, exit): >exit
 [1;31m
 Start test 7[0m
 
-=[menu] Enter action (add, list, searchContact, count, exit): >add
+6[menu] Enter action (add, list, search, count, exit): >add
 
 5[add] Enter the type (person, organization) or back: >organization
-Enter organizationName: >Pizza Shop
+Enter name: >Pizza Shop
 Enter address: >Wall St. 1
-Enter number: >+0 (123) 456-789-9999
+Enter phone number: >+0 (123) 456-789-9999
 Contact added.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >list
+6[menu] Enter action (add, list, search, count, exit): >list
 1. 
 Pizza Shop
 
@@ -154,18 +161,23 @@ Pizza Shop
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-"Time created: 2020-03-04T16:52:23
-#Time last edit: 2020-03-04T16:52:23
+&Time created: 2020-03-07T21:49:05.083
+Time last edit: null
 
 -[contact] Enter action (edit, delete, menu): >edit
-0Select a field (organization, address, number): 	>address
-!Wrong input entered. Try again...
-Enter 6private java.lang.String contacts.Organization.address: >Wall St 2
-Saved
+
+(Select a field (name, address, number): 	>address
+Enter address: >Wall St 2
+Contact saved.
+Organization name: Pizza Shop
+Address: Wall St 2
+Number: +0 (123) 456-789-9999
+&Time created: 2020-03-07T21:49:05.083
+#Time last edit: 2020-03-07T21:49:05
 
 -[contact] Enter action (edit, delete, menu): >menu
 
-=[menu] Enter action (add, list, searchContact, count, exit): >list
+6[menu] Enter action (add, list, search, count, exit): >list
 1. 
 Pizza Shop
 
@@ -173,89 +185,89 @@ Pizza Shop
 Organization name: Pizza Shop
 Address: Wall St 2
 Number: +0 (123) 456-789-9999
-"Time created: 2020-03-04T16:52:23
-#Time last edit: 2020-03-04T16:52:23
+&Time created: 2020-03-07T21:49:05.083
+#Time last edit: 2020-03-07T21:49:05
 
 -[contact] Enter action (edit, delete, menu): >menu
 
-=[menu] Enter action (add, list, searchContact, count, exit): >exit
+6[menu] Enter action (add, list, search, count, exit): >exit
 [1;31m
 Start test 8[0m
 
-=[menu] Enter action (add, list, searchContact, count, exit): >add
+6[menu] Enter action (add, list, search, count, exit): >add
 
 5[add] Enter the type (person, organization) or back: >organization
-Enter organizationName: >Pizza Shop
+Enter name: >Pizza Shop
 Enter address: >Wall St. 1
-Enter number: >+0 (123) 456-789-9999
+Enter phone number: >+0 (123) 456-789-9999
 Contact added.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >add
+6[menu] Enter action (add, list, search, count, exit): >add
 
 5[add] Enter the type (person, organization) or back: >person
 Enter name: >John
 Enter surname: >Smith
-Enter 	birthDate: >
-Bad birth date!
-Enter gender: >
-Enter number: >123 456 789
+Enter birth date(yyyy-MM-dd): >
+Bad date given!
+Enter gender(M|F): >
+Enter phone number: >123 456 789
 Contact added.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >add
+6[menu] Enter action (add, list, search, count, exit): >add
 
 5[add] Enter the type (person, organization) or back: >organization
-Enter organizationName: >PizzaNuts
+Enter name: >PizzaNuts
 Enter address: >Wall St. 6
-Enter number: >+0 (123) 456-789-9999
+Enter phone number: >+0 (123) 456-789-9999
 Contact added.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >search
+6[menu] Enter action (add, list, search, count, exit): >search
 Enter search query: >pizz
 Found 2 results: 
 1. 
 Pizza Shop
 2. 	PizzaNuts
-6[searchContact] Enter action ([number], back, again): >1
+/[search] Enter action ([number], back, again): >1
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-"Time created: 2020-03-04T16:52:23
-#Time last edit: 2020-03-04T16:52:23
+)Time created: 2020-03-07T21:49:05.133305
+Time last edit: null
 
 -[contact] Enter action (edit, delete, menu): >menu
 
-=[menu] Enter action (add, list, searchContact, count, exit): >exit
+6[menu] Enter action (add, list, search, count, exit): >exit
 [1;31m
 Start test 9[0m
 
-=[menu] Enter action (add, list, searchContact, count, exit): >add
+6[menu] Enter action (add, list, search, count, exit): >add
 
 5[add] Enter the type (person, organization) or back: >organization
-Enter organizationName: >Pizza Shop
+Enter name: >Pizza Shop
 Enter address: >Wall St. 1
-Enter number: >+0 (123) 456-789-9999
+Enter phone number: >+0 (123) 456-789-9999
 Contact added.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >add
+6[menu] Enter action (add, list, search, count, exit): >add
 
 5[add] Enter the type (person, organization) or back: >person
 Enter name: >John
 Enter surname: >Smith
-Enter 	birthDate: >
-Bad birth date!
-Enter gender: >
-Enter number: >123 456 789
+Enter birth date(yyyy-MM-dd): >
+Bad date given!
+Enter gender(M|F): >
+Enter phone number: >123 456 789
 Contact added.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >add
+6[menu] Enter action (add, list, search, count, exit): >add
 
 5[add] Enter the type (person, organization) or back: >organization
-Enter organizationName: >PizzaNuts
+Enter name: >PizzaNuts
 Enter address: >Wall St. 6
-Enter number: >+0 (123) 456-789-9999
+Enter phone number: >+0 (123) 456-789-9999
 Contact added.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >search
+6[menu] Enter action (add, list, search, count, exit): >search
 Enter search query: >s
 Found 5 results: 
 1. 
@@ -265,59 +277,59 @@ Pizza Shop
 3. John Smith
 4. 	PizzaNuts
 5. 	PizzaNuts
-6[searchContact] Enter action ([number], back, again): >1
+/[search] Enter action ([number], back, again): >1
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-"Time created: 2020-03-04T16:52:23
-#Time last edit: 2020-03-04T16:52:23
+)Time created: 2020-03-07T21:49:05.262330
+Time last edit: null
 
 -[contact] Enter action (edit, delete, menu): >menu
 
-=[menu] Enter action (add, list, searchContact, count, exit): >exit
+6[menu] Enter action (add, list, search, count, exit): >exit
 [1;31m
 Start test 10[0m
 
-=[menu] Enter action (add, list, searchContact, count, exit): >add
+6[menu] Enter action (add, list, search, count, exit): >add
 
 5[add] Enter the type (person, organization) or back: >organization
-Enter organizationName: >Pizza Shop
+Enter name: >Pizza Shop
 Enter address: >Wall St. 1
-Enter number: >+0 (123) 456-789-9999
+Enter phone number: >+0 (123) 456-789-9999
 Contact added.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >add
+6[menu] Enter action (add, list, search, count, exit): >add
 
 5[add] Enter the type (person, organization) or back: >person
 Enter name: >John
 Enter surname: >Smith
-Enter 	birthDate: >
-Bad birth date!
-Enter gender: >
-Enter number: >123 456 789
+Enter birth date(yyyy-MM-dd): >
+Bad date given!
+Enter gender(M|F): >
+Enter phone number: >123 456 789
 Contact added.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >add
+6[menu] Enter action (add, list, search, count, exit): >add
 
 5[add] Enter the type (person, organization) or back: >organization
-Enter organizationName: >PizzaNuts
+Enter name: >PizzaNuts
 Enter address: >Wall St. 6
-Enter number: >+0 (123) 456-781-9999
+Enter phone number: >+0 (123) 456-781-9999
 Contact added.
 
-=[menu] Enter action (add, list, searchContact, count, exit): >search
+6[menu] Enter action (add, list, search, count, exit): >search
 Enter search query: >789
 Found 2 results: 
 1. 
 Pizza Shop
 2. John Smith
-6[searchContact] Enter action ([number], back, again): >1
+/[search] Enter action ([number], back, again): >1
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-"Time created: 2020-03-04T16:52:23
-#Time last edit: 2020-03-04T16:52:23
+)Time created: 2020-03-07T21:49:05.360544
+Time last edit: null
 
 -[contact] Enter action (edit, delete, menu): >menu
 
-=[menu] Enter action (add, list, searchContact, count, exit): >exit
+6[menu] Enter action (add, list, search, count, exit): >exit

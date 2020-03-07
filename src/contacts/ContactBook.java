@@ -4,17 +4,25 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
 /**
  * Main logic of the contact book application.
  */
-class ContactBook {
-    private final Scanner scanner = new Scanner(System.in);
+public class ContactBook {
+    static final TerminalConsole TERMINAL_COMMON = new TerminalConsole();
     private ArrayList<Contact> contacts = new ArrayList<>();
     private String filename;
+
+    int getContactSize() {
+        return contacts.size();
+    }
+
+    Contact getContactById(int contactId) {
+        return contacts.get(contactId);
+    }
 
     /**
      * Loads the list of contact objects previously saved to db or serialized.
@@ -34,198 +42,63 @@ class ContactBook {
         this.filename = filename;
     }
 
-    /**
-     * Entry point to contact book.
-     */
-    void openMainMenu() {
-        boolean exitMenu = false;
-
-        do {
-            System.out.print("\n[menu] Enter action (add, list, searchContact, count, exit): ");
-
-            switch (scanner.nextLine().toUpperCase()) {
-                case "ADD":
-                    openAddMenu();
-                    break;
-                case "LIST":
-                    openListMenu();
-                    break;
-                case "SEARCH":
-                    searchContact();
-                    break;
-                case "COUNT":
-                    System.out.printf("The Phone Book has %d records.\n", contacts.size());
-                    break;
-                case "EXIT":
-                    exitMenu = true;
-                    break;
-                default:
-                    wrongInputEntered();
-            }
-        } while (!exitMenu);
-    }
-
-    private void openAddMenu() {
-        boolean exitAddMenu = true;
-
-        do {
-            System.out.print("\n[add] Enter the type (person, organization) or back: ");
-
-            switch (scanner.nextLine().toUpperCase()) {
-                case "PERSON":
-                    addContact(new Person());
-                    break;
-                case "ORGANIZATION":
-                    addContact(new Organization());
-                    break;
-                case "BACK":
-                    break;
-                default:
-                    exitAddMenu = false;
-                    wrongInputEntered();
-            }
-        } while (!exitAddMenu);
-    }
-
-    private void openListMenu() {
-        String action;
-        boolean exitListMenu = false;
-
-        do {
-            listContacts();
-            System.out.print("\n[list] Enter action ([number], back): ");
-
-            switch (action = scanner.nextLine().toUpperCase()) {
-                case "":
-                case "NUMBER":
-                    showContact(scanner.nextLine());
-                    exitListMenu = true;
-                    break;
-                case "BACK":
-                    exitListMenu = true;
-                    break;
-                default:
-                    try {
-                        Integer.parseInt(action);
-                        showContact(action);
-                        exitListMenu = true;
-                    } catch (NumberFormatException e) {
-                        wrongInputEntered();
-                    }
-            }
-        } while (!exitListMenu);
-    }
-
-    private void openSearchMenu() {
-        String action;
-        boolean exitSearchMenu = true;
-
-        do {
-            System.out.print("[searchContact] Enter action ([number], back, again): ");
-
-            switch (action = scanner.nextLine().toUpperCase()) {
-                case "":
-                case "NUMBER":
-                    String contactIndex = scanner.nextLine();
-                    showContact(contactIndex);
-                    openContactMenu(Integer.parseInt(contactIndex));
-                    break;
-                case "BACK":
-                    break;
-                case "AGAIN":
-                    searchContact();
-                    break;
-                default:
-                    try {
-                        Integer.parseInt(action);
-                        showContact(action);
-                    } catch (NumberFormatException e) {
-                        wrongInputEntered();
-                    }
-            }
-
-        } while (!exitSearchMenu);
-
-    }
-
-    private void openEditMenu(int contactIndex) {
-        Contact contact = getContactById(contactIndex);
-        boolean exitEditMenu = false;
-
-        do {
-            contact.showEditMenuFields();
-            String fieldToEdit = scanner.nextLine().toLowerCase();
-            List<Field> fieldsAbleToEdit = contact.getAllFieldNames();
-
-            for (Field filedAbleToEdit : fieldsAbleToEdit) {
-                if (filedAbleToEdit.getName().equals(fieldToEdit)) {
-                    System.out.printf("Enter %s: ", filedAbleToEdit);
-                    if ("number".equals(filedAbleToEdit.getName())) {
-                        contact.setValueToField(filedAbleToEdit.getName(), filterPhoneNumber(scanner.nextLine()));
-                    } else {
-                        contact.setValueToField(filedAbleToEdit.getName(), scanner.nextLine());
-                    }
-                    contact.setLastEditDateTime(LocalDateTime.now().withNano(0));
-                    contacts.set(contactIndex, contact);
-                    System.out.println("Saved");
-                    serializeContacts();
-                    exitEditMenu = true;
-                    break;
-                } else {
-                    wrongInputEntered();
-                }
-            }
-        } while (!exitEditMenu);
-    }
-
-    private void openContactMenu(int contactIndex) {
-        boolean exitContactMenu = false;
-
-        do {
-            System.out.print("\n[contact] Enter action (edit, delete, menu): ");
-
-            switch (scanner.nextLine().toUpperCase()) {
-                case "EDIT":
-                    openEditMenu(contactIndex);
-                    break;
-                case "DELETE":
-                    deleteContact(contactIndex);
-                    exitContactMenu = true;
-                    break;
-                case "MENU":
-                    exitContactMenu = true;
-                    break;
-                default:
-                    wrongInputEntered();
-            }
-
-        } while (!exitContactMenu);
-    }
-
-    private void addContact(Contact contact) {
-        List<Field> fieldsAbleToEdit = contact.getAllFieldNames();
-
-        for (Field filedAbleToEdit : fieldsAbleToEdit) {
-            System.out.printf("Enter %s: ", filedAbleToEdit.getName());
-            if ("number".equals(filedAbleToEdit.getName())) {
-                contact.setValueToField(filedAbleToEdit.getName(), filterPhoneNumber(scanner.nextLine()));
-            } else {
-                contact.setValueToField(filedAbleToEdit.getName(), scanner.nextLine());
-            }
-        }
-
-        contact.setCreationDateTime(LocalDateTime.now().withNano(0));
-        contact.setLastEditDateTime(LocalDateTime.now().withNano(0));
-        contacts.add(contact);
-        System.out.println("Contact added.");
+    void addPerson() {
+        Person person = new Person();
+        TERMINAL_COMMON.showEnterField("name");
+        person.setName(TERMINAL_COMMON.getUserInput(Client.SCANNER));
+        TERMINAL_COMMON.showEnterField("surname");
+        person.setSurname(TERMINAL_COMMON.getUserInput(Client.SCANNER));
+        TERMINAL_COMMON.showEnterField("birth date(yyyy-MM-dd)");
+        person.setBirthDate(person.tryCastStrToDate(TERMINAL_COMMON.getUserInput(Client.SCANNER)));
+        TERMINAL_COMMON.showEnterField("gender(M|F)");
+        person.setGender(person.tryCastStrToGender(TERMINAL_COMMON.getUserInput(Client.SCANNER)));
+        TERMINAL_COMMON.showEnterField("phone number");
+        person.setNumber(person.filterPhoneNumber(TERMINAL_COMMON.getUserInput(Client.SCANNER)));
+        person.setCreationDateTime(LocalDateTime.now().withNano(0));
+        person.setLastEditDateTime(LocalDateTime.now().withNano(0));
+        contacts.add(person);
+        TERMINAL_COMMON.showContactAdded();
         serializeContacts();
     }
 
-    private void searchContact() {
-        System.out.print("Enter search query: ");
-        Pattern searchQuery = Pattern.compile(".*" + scanner.nextLine() + ".*", Pattern.CASE_INSENSITIVE);
-        ArrayList<Contact> searchResult = new ArrayList<>();
+    private void serializeContacts() {
+        if (filename != null) {
+            try {
+                SerializationUtils.serialize(contacts, filename);
+            } catch (IOException e) {
+                TERMINAL_COMMON.showCantSaveContacts();
+                //TODO add logging e.getStackTrace()
+            }
+        }
+    }
 
+    void addOrganization() {
+        Organization organization = new Organization();
+        TERMINAL_COMMON.showEnterField("name");
+        organization.setOrganizationName(TERMINAL_COMMON.getUserInput(Client.SCANNER));
+        TERMINAL_COMMON.showEnterField("address");
+        organization.setAddress(TERMINAL_COMMON.getUserInput(Client.SCANNER));
+        TERMINAL_COMMON.showEnterField("phone number");
+        organization.setNumber(organization.filterPhoneNumber(TERMINAL_COMMON.getUserInput(Client.SCANNER)));
+        organization.setCreationDateTime(LocalDateTime.now());
+        contacts.add(organization);
+        TERMINAL_COMMON.showContactAdded();
+        serializeContacts();
+    }
+
+    void listContacts() {
+        for (int i = 0; i < contacts.size(); i++) {
+            contacts.get(i).showContactsListItem(i + 1);
+        }
+    }
+
+    void showContact(int inputIndex) {
+        TERMINAL_COMMON.showContact(contacts.get(inputIndex).toString());
+    }
+
+    void searchContact(String searchStr) {
+        Pattern searchQuery = Pattern.compile(".*" + searchStr + ".*", Pattern.CASE_INSENSITIVE);
+        ArrayList<Contact> searchResult = new ArrayList<>();
         for (Contact contact : contacts) {
             List<Field> fields = contact.getAllFieldNames();
             for (Field field : fields) {
@@ -240,76 +113,33 @@ class ContactBook {
                 }
             }
         }
-
-        System.out.printf("Found %d results: \n", searchResult.size());
-
+        TERMINAL_COMMON.showFoundResults(searchResult.size());
         for (int i = 0; i < searchResult.size(); i++) {
-            searchResult.get(i).showListItems(i + 1);
+            searchResult.get(i).showContactsListItem(i + 1);
         }
-
-        openSearchMenu();
     }
 
-    private void deleteContact(int contactIndex) {
+    void updateContact(int contactId, String fieldName, String newValue) {
+        Contact contact = contacts.get(contactId);
+        contact.setFieldByName(fieldName, newValue);
+        contact.setLastEditDateTime(LocalDateTime.now().withNano(0));
+        contacts.set(contactId, contact);
+        TERMINAL_COMMON.showContactSaved();
+        serializeContacts();
+    }
+
+    void deleteContact(int contactIndex) {
         if (contacts.isEmpty()) {
-            System.out.println("No records to delete!");
+            TERMINAL_COMMON.showNoContacts();
         } else {
             try {
                 contacts.remove(contactIndex);
-                System.out.println("The record removed!");
+                TERMINAL_COMMON.showContactRemoved();
                 serializeContacts();
-            } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                wrongInputEntered();
-            }
-        }
-    }
-
-    private void showContact(String inputStr) {
-        try {
-            int contactIndex = Integer.parseInt(inputStr) - 1;
-            Contact contact = getContactById(contactIndex);
-            System.out.println(contact.toString());
-            openContactMenu(contactIndex);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            wrongInputEntered();
-        }
-    }
-
-    private Contact getContactById(int id) throws IndexOutOfBoundsException {
-        return contacts.get(id);
-    }
-
-    private void listContacts() {
-        if (contacts.isEmpty()) {
-            System.out.println("No records to show!");
-        } else {
-            for (int i = 0; i < contacts.size(); i++) {
-                getContactById(i).showListItems(i + 1);
-            }
-        }
-    }
-
-    private void serializeContacts() {
-        if (filename != null) {
-            try {
-                SerializationUtils.serialize(contacts, filename);
-            } catch (IOException e) {
-                System.out.println("Couldn't save contacts.");
+            } catch (IndexOutOfBoundsException e) {
                 System.out.println(e.getMessage());
+                System.out.println(Arrays.toString(e.getStackTrace()));
             }
         }
-    }
-
-    private String filterPhoneNumber(String number) {
-        if (RegexValidator.validatePhoneNumber(number)) {
-            return number;
-        } else {
-            System.out.println("Wrong number format!");
-            return "";
-        }
-    }
-
-    private void wrongInputEntered() {
-        System.out.println("Wrong input entered. Try again...");
     }
 }
