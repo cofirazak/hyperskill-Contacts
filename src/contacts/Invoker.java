@@ -1,13 +1,13 @@
 package contacts;
 
 class Invoker {
-    Command command;
+    private Command command;
 
-    public void setCommand(Command command) {
+    final void setCommand(Command command) {
         this.command = command;
     }
 
-    public void execute() {
+    final void execute() {
         command.execute();
     }
 }

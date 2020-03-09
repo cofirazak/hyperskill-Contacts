@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ContactsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-07T18:49:03" hostname="Rodriguess-Air.beeline" time="1.698">
+<testsuite name="ContactsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-09T08:20:09" hostname="Rodriguess-Air.beeline" time="1.388">
   <properties/>
-  <testcase name="start" classname="ContactsTest" time="1.698"/>
+  <testcase name="start" classname="ContactsTest" time="1.388"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 
@@ -24,6 +24,7 @@ Enter surname: >Smith
 Enter birth date(yyyy-MM-dd): >
 Bad date given!
 Enter gender(M|F): >
+Bad gender given!
 Enter phone number: >123 456 789
 Contact added.
 
@@ -42,6 +43,7 @@ Enter surname: >Smith
 Enter birth date(yyyy-MM-dd): >
 Bad date given!
 Enter gender(M|F): >
+Bad gender given!
 Enter phone number: >123 456 789
 Contact added.
 
@@ -54,8 +56,9 @@ Surname: Smith
 Birth date: [no data]
 Gender: [no data]
 Number: 123 456 789
-Time created: 2020-03-07T21:49:04
-Time last edit: 2020-03-07T21:49:04
+Time created: 2020-03-09T11:20:10
+Time last edit: 2020-03-09T11:20:10
+
 
 [contact] Enter action (edit, delete, menu): >menu
 
@@ -78,8 +81,9 @@ Contact added.
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-07T21:49:04.932284
+Time created: 2020-03-09T11:20:10.460261
 Time last edit: null
+
 
 [contact] Enter action (edit, delete, menu): >menu
 
@@ -95,6 +99,7 @@ Enter surname: >Smith
 Enter birth date(yyyy-MM-dd): >
 Bad date given!
 Enter gender(M|F): >
+Bad gender given!
 Enter phone number: >123 456 789
 Contact added.
 
@@ -107,8 +112,9 @@ Surname: Smith
 Birth date: [no data]
 Gender: [no data]
 Number: 123 456 789
-Time created: 2020-03-07T21:49:05
-Time last edit: 2020-03-07T21:49:05
+Time created: 2020-03-09T11:20:10
+Time last edit: 2020-03-09T11:20:10
+
 
 [contact] Enter action (edit, delete, menu): >edit
 
@@ -121,8 +127,9 @@ Surname: Smith
 Birth date: [no data]
 Gender: M
 Number: 123 456 789
-Time created: 2020-03-07T21:49:05
-Time last edit: 2020-03-07T21:49:05
+Time created: 2020-03-09T11:20:10
+Time last edit: 2020-03-09T11:20:10
+
 
 [contact] Enter action (edit, delete, menu): >menu
 
@@ -135,8 +142,9 @@ Surname: Smith
 Birth date: [no data]
 Gender: M
 Number: 123 456 789
-Time created: 2020-03-07T21:49:05
-Time last edit: 2020-03-07T21:49:05
+Time created: 2020-03-09T11:20:10
+Time last edit: 2020-03-09T11:20:10
+
 
 [contact] Enter action (edit, delete, menu): >menu
 
@@ -159,8 +167,9 @@ Contact added.
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-07T21:49:05.083
+Time created: 2020-03-09T11:20:10.632968
 Time last edit: null
+
 
 [contact] Enter action (edit, delete, menu): >edit
 
@@ -170,8 +179,9 @@ Contact saved.
 Organization name: Pizza Shop
 Address: Wall St 2
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-07T21:49:05.083
-Time last edit: 2020-03-07T21:49:05
+Time created: 2020-03-09T11:20:10.632968
+Time last edit: 2020-03-09T11:20:10
+
 
 [contact] Enter action (edit, delete, menu): >menu
 
@@ -182,8 +192,9 @@ Time last edit: 2020-03-07T21:49:05
 Organization name: Pizza Shop
 Address: Wall St 2
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-07T21:49:05.083
-Time last edit: 2020-03-07T21:49:05
+Time created: 2020-03-09T11:20:10.632968
+Time last edit: 2020-03-09T11:20:10
+
 
 [contact] Enter action (edit, delete, menu): >menu
 
@@ -207,6 +218,7 @@ Enter surname: >Smith
 Enter birth date(yyyy-MM-dd): >
 Bad date given!
 Enter gender(M|F): >
+Bad gender given!
 Enter phone number: >123 456 789
 Contact added.
 
@@ -220,15 +232,16 @@ Contact added.
 
 [menu] Enter action (add, list, search, count, exit): >search
 Enter search query: >pizz
-Found 2 results: 
+Found 2 results:
 1. Pizza Shop
 2. PizzaNuts
 [search] Enter action ([number], back, again): >1
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-07T21:49:05.133305
+Time created: 2020-03-09T11:20:10.678449
 Time last edit: null
+
 
 [contact] Enter action (edit, delete, menu): >menu
 
@@ -252,6 +265,7 @@ Enter surname: >Smith
 Enter birth date(yyyy-MM-dd): >
 Bad date given!
 Enter gender(M|F): >
+Bad gender given!
 Enter phone number: >123 456 789
 Contact added.
 
@@ -265,7 +279,7 @@ Contact added.
 
 [menu] Enter action (add, list, search, count, exit): >search
 Enter search query: >s
-Found 5 results: 
+Found 5 results:
 1. Pizza Shop
 2. Pizza Shop
 3. John Smith
@@ -275,8 +289,9 @@ Found 5 results:
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-07T21:49:05.262330
+Time created: 2020-03-09T11:20:10.789830
 Time last edit: null
+
 
 [contact] Enter action (edit, delete, menu): >menu
 
@@ -300,6 +315,7 @@ Enter surname: >Smith
 Enter birth date(yyyy-MM-dd): >
 Bad date given!
 Enter gender(M|F): >
+Bad gender given!
 Enter phone number: >123 456 789
 Contact added.
 
@@ -313,15 +329,16 @@ Contact added.
 
 [menu] Enter action (add, list, search, count, exit): >search
 Enter search query: >789
-Found 2 results: 
+Found 2 results:
 1. Pizza Shop
 2. John Smith
 [search] Enter action ([number], back, again): >1
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-07T21:49:05.360544
+Time created: 2020-03-09T11:20:10.835618
 Time last edit: null
+
 
 [contact] Enter action (edit, delete, menu): >menu
 

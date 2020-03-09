@@ -1,131 +1,160 @@
 package contacts;
 
-
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class TerminalConsole implements TerminalCommon {
     @Override
-    public String getUserInput(Scanner scanner) {
-        return scanner.nextLine();
+    public final String getUserInput() {
+        try (final Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8)) {
+            return scanner.nextLine();
+        }
     }
 
     @Override
-    public void showMainMenuEnterAction() {
-        System.out.print("\n[menu] Enter action (add, list, search, count, exit): ");
+    public final void showMainMenuEnterAction() {
+        System.out.println();
+        System.out.print("[menu] Enter action (add, list, search, count, exit): ");
     }
 
     @Override
-    public void showAddMenuEnterType() {
-        System.out.print("\n[add] Enter the type (person, organization) or back: ");
+    public final void showAddMenuEnterType() {
+        System.out.println();
+        System.out.print("[add] Enter the type (person, organization) or back: ");
     }
 
     @Override
-    public void showWrongInput() {
+    public final void showWrongInput() {
         System.out.println("Wrong input entered. Try again...");
     }
 
     @Override
-    public void showContactAdded() {
+    public final void showContactAdded() {
         System.out.println("Contact added.");
     }
 
     @Override
-    public void showCantSaveContacts() {
+    public final void showCantSaveContacts() {
         System.out.println("Couldn't save contacts.");
     }
 
     @Override
-    public void showListMenuEnterAction() {
-        System.out.print("\n[list] Enter action ([number], back): ");
+    public final void showListMenuEnterAction() {
+        System.out.println();
+        System.out.print("[list] Enter action ([number], back): ");
     }
 
     @Override
-    public void showListItem(int index, String name, String surname) {
-        System.out.printf("%d. %s %s\n", index, name, surname);
+    public final void showListItem(int index, String name, String surname) {
+        System.out.printf("%d. %s %s", index, name, surname);
+        System.out.println();
     }
 
     @Override
-    public void showListItem(int index, String orgName) {
-        System.out.printf("%d. %s\n", index, orgName);
+    public final void showListItem(int index, String orgName) {
+        System.out.printf("%d. %s", index, orgName);
+        System.out.println();
     }
 
     @Override
-    public void showContact(String contactStr) {
+    public final void showContact(String contactStr) {
         System.out.println(contactStr);
     }
 
     @Override
-    public void showContactMenuEnterAction() {
-        System.out.print("\n[contact] Enter action (edit, delete, menu): ");
+    public final void showContactMenuEnterAction() {
+        System.out.println();
+        System.out.print("[contact] Enter action (edit, delete, menu): ");
     }
 
     @Override
-    public void showNoContacts() {
+    public final void showNoContacts() {
         System.out.println("No contacts to delete!");
     }
 
     @Override
-    public void showContactRemoved() {
+    public final void showContactRemoved() {
         System.out.println("Contact deleted!");
     }
 
     @Override
-    public void showNoRecordsToShow() {
+    public final void showNoRecordsToShow() {
         System.out.println("No records to show!");
     }
 
     @Override
-    public void showPersonEditableFields() {
-        System.out.println("\nSelect a field (name, surname, birth, gender, number): ");
+    public final void showPersonEditableFields() {
+        System.out.println();
+        System.out.println("Select a field (name, surname, birth, gender, number): ");
     }
 
     @Override
-    public void showOrgEditableFields() {
-        System.out.print("\nSelect a field (name, address, number): ");
+    public final void showOrgEditableFields() {
+        System.out.println();
+        System.out.print("Select a field (name, address, number): ");
     }
 
     @Override
-    public void showEnterField(String field) {
+    public final void showEnterField(String field) {
         System.out.printf("Enter %s: ", field);
     }
 
     @Override
-    public void showBadDate() {
+    public final void showBadDate() {
         System.out.println("Bad date given!");
     }
 
     @Override
-    public void showWrongNumberFormat() {
+    public final void showBadGender() {
+        System.out.println("Bad gender given!");
+    }
+
+    @Override
+    public final void showWrongNumberFormat() {
         System.out.println("Wrong number format!");
     }
 
     @Override
-    public void showContactSaved() {
+    public final void showContactSaved() {
         System.out.println("Contact saved.");
     }
 
     @Override
-    public void showEnterSearch() {
+    public final void showEnterSearch() {
         System.out.print("Enter search query: ");
     }
 
     @Override
-    public void showFoundResults(int size) {
-        System.out.printf("Found %d results: \n", size);
+    public final void showFoundResults(int size) {
+        System.out.printf("Found %d results:", size);
+        System.out.println();
     }
 
     @Override
-    public void showSearchEnterAction() {
+    public final void showSearchEnterAction() {
         System.out.print("[search] Enter action ([number], back, again): ");
     }
 
     @Override
-    public void showNoRecordsToSearch() {
+    public final void showNoRecordsToSearch() {
         System.out.println("No records to search!");
     }
 
     @Override
-    public void showCount(int size) {
-        System.out.printf("The Phone Book has %d records.\n", size);
+    public final void showCount(int size) {
+        System.out.printf("The Phone Book has %d records.", size);
+        System.out.println();
+    }
+
+    @Override
+    public final void showFileLoaded(String givenFilename) {
+        System.out.printf("Loaded contacts from file: %s", givenFilename);
+        System.out.println();
+    }
+
+    @Override
+    public final void showNewFileCreated(String givenFilename) {
+        System.out.printf("No contacts loaded. New contacts will be saved to \"%s\"", givenFilename);
+        System.out.println();
     }
 }

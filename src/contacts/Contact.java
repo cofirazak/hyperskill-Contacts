@@ -14,22 +14,20 @@ import static java.lang.reflect.Modifier.isProtected;
  * Abstraction for concrete realisation of contact types like Person and Organization.
  */
 abstract class Contact implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -6974594304581876842L;
     protected String number;
     LocalDateTime creationDateTime;
     LocalDateTime lastEditDateTime;
 
-    /**
-     * Get all the fields from instance called this method and all public fields from its superclasses.
-     *
-     * @return List<Field>
-     */
-    List<Field> getAllFieldNames() {
-        final List<Field> allFields = new ArrayList<>();
-        Collections.addAll(allFields, this.getClass().getDeclaredFields());
-        Class<?> currentClass = this.getClass().getSuperclass();
-        while (currentClass != null) {
-            final Field[] declaredFields = Arrays.stream(currentClass.getDeclaredFields()).filter(filed -> isProtected(filed.getModifiers())).toArray(Field[]::new);
+    final List<Field> getAllFieldNames() {
+        final List<Field> allFields = new ArrayList<>(30);
+        Collections.addAll(allFields, getClass().getDeclaredFields());
+        Class<?> currentClass = getClass().getSuperclass();
+        while (null != currentClass) {
+            final Field[] declaredFields = Arrays
+                    .stream(currentClass.getDeclaredFields())
+                    .filter(filed -> isProtected(filed.getModifiers()))
+                    .toArray(Field[]::new);
             Collections.addAll(allFields, declaredFields);
             currentClass = currentClass.getSuperclass();
         }
@@ -38,27 +36,29 @@ abstract class Contact implements Serializable {
 
     abstract String[] getEditableFields();
 
-    public void setNumber(String number) {
+    final void setNumber(String number) {
         this.number = number;
     }
 
-    void setCreationDateTime(LocalDateTime creationDateTime) {
+    final void setCreationDateTime(LocalDateTime creationDateTime) {
         this.creationDateTime = creationDateTime;
     }
 
-    void setLastEditDateTime(LocalDateTime lastEditDateTime) {
+    final void setLastEditDateTime(LocalDateTime lastEditDateTime) {
         this.lastEditDateTime = lastEditDateTime;
     }
 
     abstract void setFieldByName(String fieldName, String newValue);
 
-    String filterPhoneNumber(String number) {
-        if (RegexValidator.validatePhoneNumber(number)) {
-            return number;
+    final String filterPhoneNumber(String number) {
+        String result;
+        if (RegexValidator.isValidPhoneNumber(number)) {
+            result = number;
         } else {
             ContactBook.TERMINAL_COMMON.showWrongNumberFormat();
-            return "";
+            result = "";
         }
+        return result;
     }
 
     abstract void showContactsListItem(int index);

@@ -13,15 +13,12 @@ import java.util.regex.Pattern;
  */
 public class ContactBook {
     static final TerminalConsole TERMINAL_COMMON = new TerminalConsole();
-    private ArrayList<Contact> contacts = new ArrayList<>();
+    private static final int INITIAL_CAPACITY = 50;
+    private ArrayList<Contact> contacts = new ArrayList<>(INITIAL_CAPACITY);
     private String filename;
 
-    int getContactSize() {
+    final int getContactSize() {
         return contacts.size();
-    }
-
-    Contact getContactById(int contactId) {
-        return contacts.get(contactId);
     }
 
     /**
@@ -29,8 +26,12 @@ public class ContactBook {
      *
      * @param contacts list of contact objects.
      */
-    void setContacts(ArrayList<Contact> contacts) {
-        this.contacts = contacts;
+    final void setContacts(ArrayList<Contact> contacts) {
+        this.contacts = new ArrayList<>(contacts);
+    }
+
+    final Contact getContactById(int contactId) {
+        return contacts.get(contactId);
     }
 
     /**
@@ -38,31 +39,30 @@ public class ContactBook {
      *
      * @param filename name of file to save contacts to.
      */
-    void setFilename(String filename) {
+    final void setFilename(String filename) {
         this.filename = filename;
     }
 
-    void addPerson() {
+    final void addPerson() {
         Person person = new Person();
         TERMINAL_COMMON.showEnterField("name");
-        person.setName(TERMINAL_COMMON.getUserInput(Client.SCANNER));
+        person.setName(TERMINAL_COMMON.getUserInput());
         TERMINAL_COMMON.showEnterField("surname");
-        person.setSurname(TERMINAL_COMMON.getUserInput(Client.SCANNER));
+        person.setSurname(TERMINAL_COMMON.getUserInput());
         TERMINAL_COMMON.showEnterField("birth date(yyyy-MM-dd)");
-        person.setBirthDate(person.tryCastStrToDate(TERMINAL_COMMON.getUserInput(Client.SCANNER)));
+        person.setBirthDate(person.tryCastStrToDate(TERMINAL_COMMON.getUserInput()));
         TERMINAL_COMMON.showEnterField("gender(M|F)");
-        person.setGender(person.tryCastStrToGender(TERMINAL_COMMON.getUserInput(Client.SCANNER)));
+        person.setGender(person.tryCastStrToGender(TERMINAL_COMMON.getUserInput()));
         TERMINAL_COMMON.showEnterField("phone number");
-        person.setNumber(person.filterPhoneNumber(TERMINAL_COMMON.getUserInput(Client.SCANNER)));
+        person.setNumber(person.filterPhoneNumber(TERMINAL_COMMON.getUserInput()));
         person.setCreationDateTime(LocalDateTime.now().withNano(0));
         person.setLastEditDateTime(LocalDateTime.now().withNano(0));
         contacts.add(person);
         TERMINAL_COMMON.showContactAdded();
-        serializeContacts();
     }
 
-    private void serializeContacts() {
-        if (filename != null) {
+    final void serializeContacts() {
+        if (null != filename) {
             try {
                 SerializationUtils.serialize(contacts, filename);
             } catch (IOException e) {
@@ -72,40 +72,40 @@ public class ContactBook {
         }
     }
 
-    void addOrganization() {
+    final void addOrganization() {
         Organization organization = new Organization();
         TERMINAL_COMMON.showEnterField("name");
-        organization.setOrganizationName(TERMINAL_COMMON.getUserInput(Client.SCANNER));
+        organization.setOrganizationName(TERMINAL_COMMON.getUserInput());
         TERMINAL_COMMON.showEnterField("address");
-        organization.setAddress(TERMINAL_COMMON.getUserInput(Client.SCANNER));
+        organization.setAddress(TERMINAL_COMMON.getUserInput());
         TERMINAL_COMMON.showEnterField("phone number");
-        organization.setNumber(organization.filterPhoneNumber(TERMINAL_COMMON.getUserInput(Client.SCANNER)));
+        organization.setNumber(organization.filterPhoneNumber(TERMINAL_COMMON.getUserInput()));
         organization.setCreationDateTime(LocalDateTime.now());
         contacts.add(organization);
         TERMINAL_COMMON.showContactAdded();
-        serializeContacts();
     }
 
-    void listContacts() {
-        for (int i = 0; i < contacts.size(); i++) {
+    final void listContacts() {
+        final int size = contacts.size();
+        for (int i = 0; i < size; i++) {
             contacts.get(i).showContactsListItem(i + 1);
         }
     }
 
-    void showContact(int inputIndex) {
+    final void showContact(int inputIndex) {
         TERMINAL_COMMON.showContact(contacts.get(inputIndex).toString());
     }
 
-    void searchContact(String searchStr) {
+    final void searchContact(String searchStr) {
         Pattern searchQuery = Pattern.compile(".*" + searchStr + ".*", Pattern.CASE_INSENSITIVE);
-        ArrayList<Contact> searchResult = new ArrayList<>();
+        List<Contact> searchResult = new ArrayList<>(INITIAL_CAPACITY);
         for (Contact contact : contacts) {
             List<Field> fields = contact.getAllFieldNames();
             for (Field field : fields) {
                 try {
                     field.setAccessible(true);
                     Object fieldValue = field.get(contact);
-                    if (fieldValue != null && searchQuery.matcher(fieldValue.toString()).matches()) {
+                    if (null != fieldValue && searchQuery.matcher(fieldValue.toString()).matches()) {
                         searchResult.add(contact);
                     }
                 } catch (IllegalAccessException e) {
@@ -113,22 +113,22 @@ public class ContactBook {
                 }
             }
         }
-        TERMINAL_COMMON.showFoundResults(searchResult.size());
-        for (int i = 0; i < searchResult.size(); i++) {
+        final int size = searchResult.size();
+        TERMINAL_COMMON.showFoundResults(size);
+        for (int i = 0; i < size; i++) {
             searchResult.get(i).showContactsListItem(i + 1);
         }
     }
 
-    void updateContact(int contactId, String fieldName, String newValue) {
+    final void updateContact(int contactId, String fieldName, String newValue) {
         Contact contact = contacts.get(contactId);
         contact.setFieldByName(fieldName, newValue);
         contact.setLastEditDateTime(LocalDateTime.now().withNano(0));
         contacts.set(contactId, contact);
         TERMINAL_COMMON.showContactSaved();
-        serializeContacts();
     }
 
-    void deleteContact(int contactIndex) {
+    final void deleteContact(int contactIndex) {
         if (contacts.isEmpty()) {
             TERMINAL_COMMON.showNoContacts();
         } else {

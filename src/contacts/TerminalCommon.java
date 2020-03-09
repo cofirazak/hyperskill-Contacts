@@ -1,10 +1,8 @@
 package contacts;
 
-import java.util.Scanner;
-
 interface TerminalCommon {
 
-    String getUserInput(Scanner scanner);
+    String getUserInput();
 
     void showMainMenuEnterAction();
 
@@ -40,6 +38,8 @@ interface TerminalCommon {
 
     void showBadDate();
 
+    void showBadGender();
+
     void showWrongNumberFormat();
 
     void showContactSaved();
@@ -53,4 +53,8 @@ interface TerminalCommon {
     void showNoRecordsToSearch();
 
     void showCount(int size);
+
+    void showFileLoaded(String givenFilename);
+
+    void showNewFileCreated(String givenFilename);
 }

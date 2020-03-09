@@ -3,12 +3,13 @@ package contacts;
 class CommandAddOrganization implements Command {
     private ContactBook receiver;
 
-    public void setReceiver(ContactBook receiver) {
+    final void setReceiver(ContactBook receiver) {
         this.receiver = receiver;
     }
 
     @Override
-    public void execute() {
+    public final void execute() {
         receiver.addOrganization();
+        receiver.serializeContacts();
     }
 }

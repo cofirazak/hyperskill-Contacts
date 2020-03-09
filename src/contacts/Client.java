@@ -1,12 +1,11 @@
 package contacts;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Client {
-    static final Scanner SCANNER = new Scanner(System.in);
     private static final Client CLIENT = new Client();
     private static final ContactBook CONTACT_BOOK = new ContactBook();
     private static final Invoker INVOKER = new Invoker();
@@ -17,25 +16,27 @@ public class Client {
     }
 
     private static void loadContacts(String[] args) {
-        if (args.length != 0) {
+        if (0 != args.length) {
             String givenFilename = args[0];
             CONTACT_BOOK.setFilename(givenFilename);
             try {
                 @SuppressWarnings("unchecked")
                 ArrayList<Contact> contacts = (ArrayList<Contact>) SerializationUtils.deserialize(givenFilename);
                 CONTACT_BOOK.setContacts(contacts);
-                System.out.println("Loaded contacts from file: " + givenFilename);
-            } catch (IOException | ClassNotFoundException e) {
-                System.out.printf("No contacts loaded. New contacts will be saved to \"%s\"\n", givenFilename);
+                ContactBook.TERMINAL_COMMON.showFileLoaded(givenFilename);
+            } catch (FileNotFoundException | ClassNotFoundException e) {
+                ContactBook.TERMINAL_COMMON.showNewFileCreated(givenFilename);
+            } catch (IOException e) {
+                ContactBook.TERMINAL_COMMON.showNewFileCreated(givenFilename);
             }
         }
     }
 
     private void openMainMenuDialog() {
-        boolean exitMenu = false;
+        boolean doNotExit = true;
         do {
             ContactBook.TERMINAL_COMMON.showMainMenuEnterAction();
-            switch (ContactBook.TERMINAL_COMMON.getUserInput(SCANNER).toUpperCase()) {
+            switch (ContactBook.TERMINAL_COMMON.getUserInput().toUpperCase()) {
                 case "ADD":
                     openAddMenu();
                     break;
@@ -49,88 +50,81 @@ public class Client {
                     ContactBook.TERMINAL_COMMON.showCount(CONTACT_BOOK.getContactSize());
                     break;
                 case "EXIT":
-                    exitMenu = true;
+                    doNotExit = false;
                     break;
                 default:
                     ContactBook.TERMINAL_COMMON.showWrongInput();
             }
-        } while (!exitMenu);
+        } while (doNotExit);
     }
 
     private void openAddMenu() {
-        boolean exitMenu;
+        boolean doNotStop = false;
         do {
             ContactBook.TERMINAL_COMMON.showAddMenuEnterType();
-            switch (ContactBook.TERMINAL_COMMON.getUserInput(SCANNER).toUpperCase()) {
+            switch (ContactBook.TERMINAL_COMMON.getUserInput().toUpperCase()) {
                 case "PERSON":
                     CommandAddPerson addPerson = new CommandAddPerson();
                     addPerson.setReceiver(CONTACT_BOOK);
                     INVOKER.setCommand(addPerson);
                     INVOKER.execute();
-                    exitMenu = true;
                     break;
                 case "ORGANIZATION":
                     CommandAddOrganization addOrganization = new CommandAddOrganization();
                     addOrganization.setReceiver(CONTACT_BOOK);
                     INVOKER.setCommand(addOrganization);
                     INVOKER.execute();
-                    exitMenu = true;
                     break;
                 case "BACK":
-                    exitMenu = true;
                     break;
                 default:
-                    exitMenu = false;
                     ContactBook.TERMINAL_COMMON.showWrongInput();
+                    doNotStop = true;
             }
-        } while (!exitMenu);
+        } while (doNotStop);
     }
 
     private void openListMenu() {
-        if (CONTACT_BOOK.getContactSize() == 0) {
+        if (0 == CONTACT_BOOK.getContactSize()) {
             ContactBook.TERMINAL_COMMON.showNoRecordsToShow();
         } else {
-            boolean exitMenu;
+            boolean doNotStop = false;
             String action;
             do {
                 CONTACT_BOOK.listContacts();
                 ContactBook.TERMINAL_COMMON.showListMenuEnterAction();
-                switch (action = ContactBook.TERMINAL_COMMON.getUserInput(SCANNER).toUpperCase()) {
+                switch (action = ContactBook.TERMINAL_COMMON.getUserInput().toUpperCase()) {
                     case "":
                     case "NUMBER":
                         try {
-                            contactById(ContactBook.TERMINAL_COMMON.getUserInput(SCANNER));
-                            exitMenu = true;
+                            contactById(ContactBook.TERMINAL_COMMON.getUserInput());
                             break;
                         } catch (NumberFormatException | IndexOutOfBoundsException e) {
                             ContactBook.TERMINAL_COMMON.showWrongInput();
-                            exitMenu = true;
                             break;
                         }
                     case "BACK":
-                        exitMenu = true;
                         break;
                     default:
                         try {
                             contactById(action);
-                            exitMenu = true;
                         } catch (NumberFormatException | IndexOutOfBoundsException e) {
                             ContactBook.TERMINAL_COMMON.showWrongInput();
-                            exitMenu = false;
+                            doNotStop = true;
                         }
                 }
-            } while (!exitMenu);
+            } while (doNotStop);
         }
     }
 
     private void search() {
-        if (CONTACT_BOOK.getContactSize() == 0) {
+        if (0 == CONTACT_BOOK.getContactSize()) {
             ContactBook.TERMINAL_COMMON.showNoRecordsToSearch();
         } else {
             ContactBook.TERMINAL_COMMON.showEnterSearch();
             CommandSearch commandSearch = new CommandSearch();
             commandSearch.setReceiver(CONTACT_BOOK);
-            commandSearch.setSearchString(ContactBook.TERMINAL_COMMON.getUserInput(SCANNER));
+            commandSearch.setSearchString(ContactBook.TERMINAL_COMMON.getUserInput());
             INVOKER.setCommand(commandSearch);
             INVOKER.execute();
             openSearchMenu();
@@ -138,14 +132,14 @@ public class Client {
     }
 
     private void openSearchMenu() {
-        boolean exitMenu = true;
+        boolean doNotExit = false;
         String action;
         do {
             ContactBook.TERMINAL_COMMON.showSearchEnterAction();
-            switch (action = ContactBook.TERMINAL_COMMON.getUserInput(SCANNER).toUpperCase()) {
+            switch (action = ContactBook.TERMINAL_COMMON.getUserInput().toUpperCase()) {
                 case "":
                 case "NUMBER":
-                    contactById(ContactBook.TERMINAL_COMMON.getUserInput(SCANNER));
+                    contactById(ContactBook.TERMINAL_COMMON.getUserInput());
                     break;
                 case "BACK":
                     break;
@@ -157,11 +151,11 @@ public class Client {
                         contactById(action);
                     } catch (NumberFormatException | IndexOutOfBoundsException e) {
                         ContactBook.TERMINAL_COMMON.showWrongInput();
-                        exitMenu = false;
+                        doNotExit = true;
                     }
             }
 
-        } while (!exitMenu);
+        } while (doNotExit);
 
     }
 
@@ -172,44 +166,52 @@ public class Client {
     }
 
     private void openContactMenu(int contactId) {
-        boolean exitMenu = false;
+        boolean doNotStop = true;
         do {
             ContactBook.TERMINAL_COMMON.showContactMenuEnterAction();
-            switch (ContactBook.TERMINAL_COMMON.getUserInput(SCANNER).toUpperCase()) {
+            switch (ContactBook.TERMINAL_COMMON.getUserInput().toUpperCase()) {
                 case "EDIT":
                     Contact contact = CONTACT_BOOK.getContactById(contactId);
                     contact.showEditableFields();
                     String[] editableFields = contact.getEditableFields();
-                    String fieldForUpdate = ContactBook.TERMINAL_COMMON.getUserInput(SCANNER).toUpperCase();
-                    if (!Arrays.asList(editableFields).contains(fieldForUpdate)) {
-                        ContactBook.TERMINAL_COMMON.showWrongInput();
-                    } else {
-                        CommandUpdate commandUpdate = new CommandUpdate();
-                        commandUpdate.setReceiver(CONTACT_BOOK);
-                        commandUpdate.setContactId(contactId);
-                        commandUpdate.setFieldForUpdate(fieldForUpdate);
-                        ContactBook.TERMINAL_COMMON.showEnterField(fieldForUpdate.toLowerCase());
-                        commandUpdate.setNewValue(ContactBook.TERMINAL_COMMON.getUserInput(SCANNER));
-                        INVOKER.setCommand(commandUpdate);
-                        INVOKER.execute();
+                    String fieldForUpdate = ContactBook.TERMINAL_COMMON.getUserInput().toUpperCase();
+                    if (Arrays.asList(editableFields).contains(fieldForUpdate)) {
+                        update(contactId, fieldForUpdate);
                         showContactById(contactId);
+                    } else {
+                        ContactBook.TERMINAL_COMMON.showWrongInput();
                     }
                     break;
                 case "DELETE":
-                    CommandDelete commandDelete = new CommandDelete();
-                    commandDelete.setReceiver(CONTACT_BOOK);
-                    commandDelete.setContactId(contactId);
-                    INVOKER.setCommand(commandDelete);
-                    INVOKER.execute();
-                    exitMenu = true;
+                    delete(contactId);
+                    doNotStop = false;
                     break;
                 case "MENU":
-                    exitMenu = true;
+                    doNotStop = false;
                     break;
                 default:
                     ContactBook.TERMINAL_COMMON.showWrongInput();
             }
-        } while (!exitMenu);
+        } while (doNotStop);
+    }
+
+    private void delete(int contactId) {
+        CommandDelete commandDelete = new CommandDelete();
+        commandDelete.setReceiver(CONTACT_BOOK);
+        commandDelete.setContactId(contactId);
+        INVOKER.setCommand(commandDelete);
+        INVOKER.execute();
+    }
+
+    private void update(int contactId, String fieldForUpdate) {
+        CommandUpdate commandUpdate = new CommandUpdate();
+        commandUpdate.setReceiver(CONTACT_BOOK);
+        commandUpdate.setContactId(contactId);
+        commandUpdate.setFieldForUpdate(fieldForUpdate);
+        ContactBook.TERMINAL_COMMON.showEnterField(fieldForUpdate.toLowerCase());
+        commandUpdate.setNewValue(ContactBook.TERMINAL_COMMON.getUserInput());
+        INVOKER.setCommand(commandUpdate);
+        INVOKER.execute();
     }
 
     private void showContactById(int contactId) {
