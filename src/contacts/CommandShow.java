@@ -4,11 +4,11 @@ public class CommandShow implements Command {
     private ContactBook receiver;
     private int contactId;
 
-    final void setReceiver(ContactBook receiver) {
-        this.receiver = receiver;
+    private CommandShow() {
     }
 
-    final void setContactId(int contactId) {
+    CommandShow(ContactBook receiver, int contactId) {
+        this.receiver = receiver;
         this.contactId = contactId;
     }
 

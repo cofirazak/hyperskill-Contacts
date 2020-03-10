@@ -52,8 +52,8 @@
 Birth date: [no data]
 Gender: [no data]
 Number: 123 456 789
-"Time created: 2020-03-09T11:20:10
-$Time last edit: 2020-03-09T11:20:10
+"Time created: 2020-03-10T11:21:59
+$Time last edit: 2020-03-10T11:21:59
 
 
 -[contact] Enter action (edit, delete, menu): >menu
@@ -78,7 +78,7 @@ Pizza Shop
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-)Time created: 2020-03-09T11:20:10.460261
+)Time created: 2020-03-10T11:21:59.552960
 Time last edit: null
 
 
@@ -109,8 +109,8 @@ Pizza Shop
 Birth date: [no data]
 Gender: [no data]
 Number: 123 456 789
-"Time created: 2020-03-09T11:20:10
-$Time last edit: 2020-03-09T11:20:10
+"Time created: 2020-03-10T11:21:59
+$Time last edit: 2020-03-10T11:21:59
 
 
 -[contact] Enter action (edit, delete, menu): >edit
@@ -125,8 +125,8 @@ Pizza Shop
 
 Gender: M
 Number: 123 456 789
-"Time created: 2020-03-09T11:20:10
-$Time last edit: 2020-03-09T11:20:10
+"Time created: 2020-03-10T11:21:59
+$Time last edit: 2020-03-10T11:21:59
 
 
 -[contact] Enter action (edit, delete, menu): >menu
@@ -141,8 +141,8 @@ Gender: M
 
 Gender: M
 Number: 123 456 789
-"Time created: 2020-03-09T11:20:10
-$Time last edit: 2020-03-09T11:20:10
+"Time created: 2020-03-10T11:21:59
+$Time last edit: 2020-03-10T11:21:59
 
 
 -[contact] Enter action (edit, delete, menu): >menu
@@ -167,7 +167,7 @@ Pizza Shop
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-)Time created: 2020-03-09T11:20:10.632968
+)Time created: 2020-03-10T11:21:59.666117
 Time last edit: null
 
 
@@ -179,8 +179,8 @@ Pizza Shop
 Organization name: Pizza Shop
 Address: Wall St 2
 Number: +0 (123) 456-789-9999
-)Time created: 2020-03-09T11:20:10.632968
-$Time last edit: 2020-03-09T11:20:10
+)Time created: 2020-03-10T11:21:59.666117
+$Time last edit: 2020-03-10T11:21:59
 
 
 -[contact] Enter action (edit, delete, menu): >menu
@@ -193,8 +193,8 @@ Pizza Shop
 Organization name: Pizza Shop
 Address: Wall St 2
 Number: +0 (123) 456-789-9999
-)Time created: 2020-03-09T11:20:10.632968
-$Time last edit: 2020-03-09T11:20:10
+)Time created: 2020-03-10T11:21:59.666117
+$Time last edit: 2020-03-10T11:21:59
 
 
 -[contact] Enter action (edit, delete, menu): >menu
@@ -241,7 +241,7 @@ Pizza Shop
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-)Time created: 2020-03-09T11:20:10.678449
+)Time created: 2020-03-10T11:21:59.744964
 Time last edit: null
 
 
@@ -293,7 +293,7 @@ Pizza Shop
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-)Time created: 2020-03-09T11:20:10.789830
+)Time created: 2020-03-10T11:21:59.831645
 Time last edit: null
 
 
@@ -341,7 +341,7 @@ Pizza Shop
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-)Time created: 2020-03-09T11:20:10.835618
+)Time created: 2020-03-10T11:21:59.918958
 Time last edit: null
 
 

@@ -17,10 +17,6 @@ public class ContactBook {
     private ArrayList<Contact> contacts = new ArrayList<>(INITIAL_CAPACITY);
     private String filename;
 
-    final int getContactSize() {
-        return contacts.size();
-    }
-
     /**
      * Loads the list of contact objects previously saved to db or serialized.
      *
@@ -30,10 +26,6 @@ public class ContactBook {
         this.contacts = new ArrayList<>(contacts);
     }
 
-    final Contact getContactById(int contactId) {
-        return contacts.get(contactId);
-    }
-
     /**
      * Sets the file for saving all the contacts after each change.
      *
@@ -41,6 +33,14 @@ public class ContactBook {
      */
     final void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    final int getContactSize() {
+        return contacts.size();
+    }
+
+    final Contact getContactById(int contactId) {
+        return contacts.get(contactId);
     }
 
     final void addPerson() {
@@ -59,17 +59,6 @@ public class ContactBook {
         person.setLastEditDateTime(LocalDateTime.now().withNano(0));
         contacts.add(person);
         TERMINAL_COMMON.showContactAdded();
-    }
-
-    final void serializeContacts() {
-        if (null != filename) {
-            try {
-                SerializationUtils.serialize(contacts, filename);
-            } catch (IOException e) {
-                TERMINAL_COMMON.showCantSaveContacts();
-                //TODO add logging e.getStackTrace()
-            }
-        }
     }
 
     final void addOrganization() {
@@ -96,6 +85,39 @@ public class ContactBook {
         TERMINAL_COMMON.showContact(contacts.get(inputIndex).toString());
     }
 
+    final void updateContact(int contactId, String fieldName, String newValue) {
+        Contact contact = contacts.get(contactId);
+        contact.setFieldByName(fieldName, newValue);
+        contact.setLastEditDateTime(LocalDateTime.now().withNano(0));
+        contacts.set(contactId, contact);
+        TERMINAL_COMMON.showContactSaved();
+    }
+
+    final void deleteContact(int contactIndex) {
+        if (contacts.isEmpty()) {
+            TERMINAL_COMMON.showNoContacts();
+        } else {
+            try {
+                contacts.remove(contactIndex);
+                TERMINAL_COMMON.showContactRemoved();
+                serializeContacts();
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println(e.getMessage());
+                System.out.println(Arrays.toString(e.getStackTrace()));
+            }
+        }
+    }
+
+    final void serializeContacts() {
+        if (null != filename) {
+            try {
+                SerializationUtils.serialize(contacts, filename);
+            } catch (IOException e) {
+                TERMINAL_COMMON.showCantSaveContacts();
+            }
+        }
+    }
+
     final void searchContact(String searchStr) {
         Pattern searchQuery = Pattern.compile(".*" + searchStr + ".*", Pattern.CASE_INSENSITIVE);
         List<Contact> searchResult = new ArrayList<>(INITIAL_CAPACITY);
@@ -117,29 +139,6 @@ public class ContactBook {
         TERMINAL_COMMON.showFoundResults(size);
         for (int i = 0; i < size; i++) {
             searchResult.get(i).showContactsListItem(i + 1);
-        }
-    }
-
-    final void updateContact(int contactId, String fieldName, String newValue) {
-        Contact contact = contacts.get(contactId);
-        contact.setFieldByName(fieldName, newValue);
-        contact.setLastEditDateTime(LocalDateTime.now().withNano(0));
-        contacts.set(contactId, contact);
-        TERMINAL_COMMON.showContactSaved();
-    }
-
-    final void deleteContact(int contactIndex) {
-        if (contacts.isEmpty()) {
-            TERMINAL_COMMON.showNoContacts();
-        } else {
-            try {
-                contacts.remove(contactIndex);
-                TERMINAL_COMMON.showContactRemoved();
-                serializeContacts();
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println(e.getMessage());
-                System.out.println(Arrays.toString(e.getStackTrace()));
-            }
         }
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ContactsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-09T08:20:09" hostname="Rodriguess-Air.beeline" time="1.388">
+<testsuite name="ContactsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-10T08:21:58" hostname="Rodriguess-Air.beeline" time="1.328">
   <properties/>
-  <testcase name="start" classname="ContactsTest" time="1.388"/>
+  <testcase name="start" classname="ContactsTest" time="1.328"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 
@@ -56,8 +56,8 @@ Surname: Smith
 Birth date: [no data]
 Gender: [no data]
 Number: 123 456 789
-Time created: 2020-03-09T11:20:10
-Time last edit: 2020-03-09T11:20:10
+Time created: 2020-03-10T11:21:59
+Time last edit: 2020-03-10T11:21:59
 
 
 [contact] Enter action (edit, delete, menu): >menu
@@ -81,7 +81,7 @@ Contact added.
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-09T11:20:10.460261
+Time created: 2020-03-10T11:21:59.552960
 Time last edit: null
 
 
@@ -112,8 +112,8 @@ Surname: Smith
 Birth date: [no data]
 Gender: [no data]
 Number: 123 456 789
-Time created: 2020-03-09T11:20:10
-Time last edit: 2020-03-09T11:20:10
+Time created: 2020-03-10T11:21:59
+Time last edit: 2020-03-10T11:21:59
 
 
 [contact] Enter action (edit, delete, menu): >edit
@@ -127,8 +127,8 @@ Surname: Smith
 Birth date: [no data]
 Gender: M
 Number: 123 456 789
-Time created: 2020-03-09T11:20:10
-Time last edit: 2020-03-09T11:20:10
+Time created: 2020-03-10T11:21:59
+Time last edit: 2020-03-10T11:21:59
 
 
 [contact] Enter action (edit, delete, menu): >menu
@@ -142,8 +142,8 @@ Surname: Smith
 Birth date: [no data]
 Gender: M
 Number: 123 456 789
-Time created: 2020-03-09T11:20:10
-Time last edit: 2020-03-09T11:20:10
+Time created: 2020-03-10T11:21:59
+Time last edit: 2020-03-10T11:21:59
 
 
 [contact] Enter action (edit, delete, menu): >menu
@@ -167,7 +167,7 @@ Contact added.
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-09T11:20:10.632968
+Time created: 2020-03-10T11:21:59.666117
 Time last edit: null
 
 
@@ -179,8 +179,8 @@ Contact saved.
 Organization name: Pizza Shop
 Address: Wall St 2
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-09T11:20:10.632968
-Time last edit: 2020-03-09T11:20:10
+Time created: 2020-03-10T11:21:59.666117
+Time last edit: 2020-03-10T11:21:59
 
 
 [contact] Enter action (edit, delete, menu): >menu
@@ -192,8 +192,8 @@ Time last edit: 2020-03-09T11:20:10
 Organization name: Pizza Shop
 Address: Wall St 2
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-09T11:20:10.632968
-Time last edit: 2020-03-09T11:20:10
+Time created: 2020-03-10T11:21:59.666117
+Time last edit: 2020-03-10T11:21:59
 
 
 [contact] Enter action (edit, delete, menu): >menu
@@ -239,7 +239,7 @@ Found 2 results:
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-09T11:20:10.678449
+Time created: 2020-03-10T11:21:59.744964
 Time last edit: null
 
 
@@ -289,7 +289,7 @@ Found 5 results:
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-09T11:20:10.789830
+Time created: 2020-03-10T11:21:59.831645
 Time last edit: null
 
 
@@ -336,7 +336,7 @@ Found 2 results:
 Organization name: Pizza Shop
 Address: Wall St. 1
 Number: +0 (123) 456-789-9999
-Time created: 2020-03-09T11:20:10.835618
+Time created: 2020-03-10T11:21:59.918958
 Time last edit: null
 
 

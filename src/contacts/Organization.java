@@ -12,9 +12,12 @@ class Organization extends Contact {
     private String organizationName;
     private String address;
 
-    @Override
-    final String[] getEditableFields() {
-        return Arrays.stream(EditableFields.values()).map(Enum::toString).toArray(String[]::new);
+    final void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
+    }
+
+    final void setAddress(String address) {
+        this.address = address;
     }
 
     final void setFieldByName(String fieldName, String newValue) {
@@ -31,12 +34,9 @@ class Organization extends Contact {
         }
     }
 
-    final void setOrganizationName(String organizationName) {
-        this.organizationName = organizationName;
-    }
-
-    final void setAddress(String address) {
-        this.address = address;
+    @Override
+    final String[] getEditableFields() {
+        return Arrays.stream(EditableFields.values()).map(Enum::toString).toArray(String[]::new);
     }
 
     @Override

@@ -4,11 +4,11 @@ public class CommandDelete implements Command {
     private ContactBook receiver;
     private int contactId;
 
-    final void setReceiver(ContactBook receiver) {
-        this.receiver = receiver;
+    private CommandDelete() {
     }
 
-    final void setContactId(int contactId) {
+    CommandDelete(ContactBook receiver, int contactId) {
+        this.receiver = receiver;
         this.contactId = contactId;
     }
 

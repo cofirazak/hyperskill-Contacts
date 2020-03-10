@@ -16,9 +16,20 @@ class Person extends Contact {
     private LocalDate birthDate;
     private Gender gender;
 
-    @Override
-    final String[] getEditableFields() {
-        return Arrays.stream(EditableFields.values()).map(Enum::toString).toArray(String[]::new);
+    final void setName(String name) {
+        this.name = name;
+    }
+
+    final void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    final void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    final void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     @Override
@@ -62,30 +73,19 @@ class Person extends Contact {
         return result;
     }
 
-    final void setName(String name) {
-        this.name = name;
-    }
-
-    final void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    final void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    final void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
     @Override
-    final void showContactsListItem(int index) {
-        ContactBook.TERMINAL_COMMON.showListItem(index, name, surname);
+    final String[] getEditableFields() {
+        return Arrays.stream(EditableFields.values()).map(Enum::toString).toArray(String[]::new);
     }
 
     @Override
     final void showEditableFields() {
         ContactBook.TERMINAL_COMMON.showPersonEditableFields();
+    }
+
+    @Override
+    final void showContactsListItem(int index) {
+        ContactBook.TERMINAL_COMMON.showListItem(index, name, surname);
     }
 
     @Override

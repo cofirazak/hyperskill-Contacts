@@ -3,7 +3,10 @@ package contacts;
 class CommandAddOrganization implements Command {
     private ContactBook receiver;
 
-    final void setReceiver(ContactBook receiver) {
+    private CommandAddOrganization() {
+    }
+
+    CommandAddOrganization(ContactBook receiver) {
         this.receiver = receiver;
     }
 

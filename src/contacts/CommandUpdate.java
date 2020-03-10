@@ -6,19 +6,13 @@ public class CommandUpdate implements Command {
     private String fieldForUpdate;
     private String newValue;
 
-    final void setReceiver(ContactBook receiver) {
+    private CommandUpdate() {
+    }
+
+    CommandUpdate(ContactBook receiver, int contactId, String fieldForUpdate, String newValue) {
         this.receiver = receiver;
-    }
-
-    final void setContactId(int contactId) {
         this.contactId = contactId;
-    }
-
-    final void setFieldForUpdate(String fieldForUpdate) {
         this.fieldForUpdate = fieldForUpdate;
-    }
-
-    final void setNewValue(String newValue) {
         this.newValue = newValue;
     }
 

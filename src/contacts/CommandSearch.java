@@ -4,11 +4,11 @@ public class CommandSearch implements Command {
     private ContactBook receiver;
     private String searchString;
 
-    final void setReceiver(ContactBook receiver) {
-        this.receiver = receiver;
+    private CommandSearch() {
     }
 
-    final void setSearchString(String searchString) {
+    CommandSearch(ContactBook receiver, String searchString) {
+        this.receiver = receiver;
         this.searchString = searchString;
     }
 

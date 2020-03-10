@@ -3,7 +3,10 @@ package contacts;
 class CommandAddPerson implements Command {
     private ContactBook receiver;
 
-    final void setReceiver(ContactBook receiver) {
+    private CommandAddPerson() {
+    }
+
+    CommandAddPerson(ContactBook receiver) {
         this.receiver = receiver;
     }
 

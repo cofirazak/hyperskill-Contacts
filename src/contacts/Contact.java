@@ -19,6 +19,20 @@ abstract class Contact implements Serializable {
     LocalDateTime creationDateTime;
     LocalDateTime lastEditDateTime;
 
+    final void setNumber(String number) {
+        this.number = number;
+    }
+
+    final void setCreationDateTime(LocalDateTime creationDateTime) {
+        this.creationDateTime = creationDateTime;
+    }
+
+    final void setLastEditDateTime(LocalDateTime lastEditDateTime) {
+        this.lastEditDateTime = lastEditDateTime;
+    }
+
+    abstract void setFieldByName(String fieldName, String newValue);
+
     final List<Field> getAllFieldNames() {
         final List<Field> allFields = new ArrayList<>(30);
         Collections.addAll(allFields, getClass().getDeclaredFields());
@@ -35,20 +49,6 @@ abstract class Contact implements Serializable {
     }
 
     abstract String[] getEditableFields();
-
-    final void setNumber(String number) {
-        this.number = number;
-    }
-
-    final void setCreationDateTime(LocalDateTime creationDateTime) {
-        this.creationDateTime = creationDateTime;
-    }
-
-    final void setLastEditDateTime(LocalDateTime lastEditDateTime) {
-        this.lastEditDateTime = lastEditDateTime;
-    }
-
-    abstract void setFieldByName(String fieldName, String newValue);
 
     final String filterPhoneNumber(String number) {
         String result;
