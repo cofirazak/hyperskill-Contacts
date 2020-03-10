@@ -93,22 +93,24 @@ public class ContactBook {
         TERMINAL_COMMON.showContactSaved();
     }
 
-    final void deleteContact(int contactIndex) {
+    final boolean deleteContact(int contactIndex) {
+        boolean result = false;
         if (contacts.isEmpty()) {
             TERMINAL_COMMON.showNoContacts();
         } else {
             try {
                 contacts.remove(contactIndex);
                 TERMINAL_COMMON.showContactRemoved();
-                serializeContacts();
+                result = true;
             } catch (IndexOutOfBoundsException e) {
                 System.out.println(e.getMessage());
                 System.out.println(Arrays.toString(e.getStackTrace()));
             }
         }
+        return result;
     }
 
-    final void serializeContacts() {
+    final void serialize() {
         if (null != filename) {
             try {
                 SerializationUtils.serialize(contacts, filename);

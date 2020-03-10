@@ -13,6 +13,6 @@ class CommandAddPerson implements Command {
     @Override
     public final void execute() {
         receiver.addPerson();
-        receiver.serializeContacts();
+        receiver.serialize();
     }
 }

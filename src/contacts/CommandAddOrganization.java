@@ -13,6 +13,6 @@ class CommandAddOrganization implements Command {
     @Override
     public final void execute() {
         receiver.addOrganization();
-        receiver.serializeContacts();
+        receiver.serialize();
     }
 }

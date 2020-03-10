@@ -19,6 +19,6 @@ public class CommandUpdate implements Command {
     @Override
     public final void execute() {
         receiver.updateContact(contactId, fieldForUpdate, newValue);
-        receiver.serializeContacts();
+        receiver.serialize();
     }
 }

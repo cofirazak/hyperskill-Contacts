@@ -14,6 +14,8 @@ public class CommandDelete implements Command {
 
     @Override
     public final void execute() {
-        receiver.deleteContact(contactId);
+        if (receiver.deleteContact(contactId)) {
+            receiver.serialize();
+        }
     }
 }
