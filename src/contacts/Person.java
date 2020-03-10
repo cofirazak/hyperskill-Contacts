@@ -11,14 +11,9 @@ import java.util.Arrays;
  */
 class Person extends Contact {
     private static final long serialVersionUID = 3725973772164558564L;
-    private String name;
     private String surname;
     private LocalDate birthDate;
     private Gender gender;
-
-    final void setName(String name) {
-        this.name = name;
-    }
 
     final void setSurname(String surname) {
         this.surname = surname;
@@ -58,7 +53,7 @@ class Person extends Contact {
         try {
             result = LocalDate.parse(inputDate);
         } catch (DateTimeParseException e) {
-            ContactBook.TERMINAL_COMMON.showBadDate();
+            Client.TERMINAL_COMMON.showBadDate();
         }
         return result;
     }
@@ -68,7 +63,7 @@ class Person extends Contact {
         try {
             result = Gender.valueOf(inputGender);
         } catch (IllegalArgumentException e) {
-            ContactBook.TERMINAL_COMMON.showBadGender();
+            Client.TERMINAL_COMMON.showBadGender();
         }
         return result;
     }
@@ -80,12 +75,12 @@ class Person extends Contact {
 
     @Override
     final void showEditableFields() {
-        ContactBook.TERMINAL_COMMON.showPersonEditableFields();
+        Client.TERMINAL_COMMON.showPersonEditableFields();
     }
 
     @Override
     final void showContactsListItem(int index) {
-        ContactBook.TERMINAL_COMMON.showListItem(index, name, surname);
+        Client.TERMINAL_COMMON.showListItem(index, name, surname);
     }
 
     @Override

@@ -9,12 +9,7 @@ import java.util.Arrays;
  */
 class Organization extends Contact {
     private static final long serialVersionUID = -414925866745458581L;
-    private String organizationName;
     private String address;
-
-    final void setOrganizationName(String organizationName) {
-        this.organizationName = organizationName;
-    }
 
     final void setAddress(String address) {
         this.address = address;
@@ -23,7 +18,7 @@ class Organization extends Contact {
     final void setFieldByName(String fieldName, String newValue) {
         switch (fieldName) {
             case "NAME":
-                organizationName = newValue;
+                name = newValue;
                 break;
             case "ADDRESS":
                 address = newValue;
@@ -41,19 +36,19 @@ class Organization extends Contact {
 
     @Override
     final void showContactsListItem(int index) {
-        ContactBook.TERMINAL_COMMON.showListItem(index, organizationName);
+        Client.TERMINAL_COMMON.showListItem(index, name);
     }
 
     @Override
     final void showEditableFields() {
-        ContactBook.TERMINAL_COMMON.showOrgEditableFields();
+        Client.TERMINAL_COMMON.showOrgEditableFields();
     }
 
     @Override
     public final String toString() {
         String currentNumber = number.isBlank() ? "[no number]" : number;
         return String.format("Organization name: %s%nAddress: %s%nNumber: %s%nTime created: %s%nTime last edit: %s%n",
-                organizationName, address, currentNumber, creationDateTime, lastEditDateTime);
+                name, address, currentNumber, creationDateTime, lastEditDateTime);
     }
 
     enum EditableFields {

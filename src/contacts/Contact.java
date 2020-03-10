@@ -15,9 +15,14 @@ import static java.lang.reflect.Modifier.isProtected;
  */
 abstract class Contact implements Serializable {
     private static final long serialVersionUID = -6974594304581876842L;
+    protected String name;
     protected String number;
     LocalDateTime creationDateTime;
     LocalDateTime lastEditDateTime;
+
+    final void setName(String name) {
+        this.name = name;
+    }
 
     final void setNumber(String number) {
         this.number = number;
@@ -55,7 +60,7 @@ abstract class Contact implements Serializable {
         if (RegexValidator.isValidPhoneNumber(number)) {
             result = number;
         } else {
-            ContactBook.TERMINAL_COMMON.showWrongNumberFormat();
+            Client.TERMINAL_COMMON.showWrongNumberFormat();
             result = "";
         }
         return result;

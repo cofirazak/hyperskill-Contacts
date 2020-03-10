@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Client {
+    static final TerminalCommon TERMINAL_COMMON = new TerminalConsole();
     private static final Client CLIENT = new Client();
     private static final ContactBook CONTACT_BOOK = new ContactBook();
     private static final Invoker INVOKER = new Invoker();
@@ -23,11 +24,11 @@ public class Client {
                 @SuppressWarnings("unchecked")
                 ArrayList<Contact> contacts = (ArrayList<Contact>) SerializationUtils.deserialize(givenFilename);
                 CONTACT_BOOK.setContacts(contacts);
-                ContactBook.TERMINAL_COMMON.showFileLoaded(givenFilename);
+                TERMINAL_COMMON.showFileLoaded(givenFilename);
             } catch (FileNotFoundException | ClassNotFoundException e) {
-                ContactBook.TERMINAL_COMMON.showNewFileCreated(givenFilename);
+                TERMINAL_COMMON.showNewFileCreated(givenFilename);
             } catch (IOException e) {
-                ContactBook.TERMINAL_COMMON.showNewFileCreated(givenFilename);
+                TERMINAL_COMMON.showNewFileCreated(givenFilename);
             }
         }
     }
@@ -35,8 +36,8 @@ public class Client {
     private void openMainMenuDialog() {
         boolean doNotExit = true;
         do {
-            ContactBook.TERMINAL_COMMON.showMainMenuEnterAction();
-            switch (ContactBook.TERMINAL_COMMON.getUserInput().toUpperCase()) {
+            TERMINAL_COMMON.showMainMenuEnterAction();
+            switch (TERMINAL_COMMON.getUserInput().toUpperCase()) {
                 case "ADD":
                     openAddMenu();
                     break;
@@ -47,13 +48,13 @@ public class Client {
                     search();
                     break;
                 case "COUNT":
-                    ContactBook.TERMINAL_COMMON.showCount(CONTACT_BOOK.getContactSize());
+                    TERMINAL_COMMON.showCount(CONTACT_BOOK.getContactSize());
                     break;
                 case "EXIT":
                     doNotExit = false;
                     break;
                 default:
-                    ContactBook.TERMINAL_COMMON.showWrongInput();
+                    TERMINAL_COMMON.showWrongInput();
             }
         } while (doNotExit);
     }
@@ -61,8 +62,8 @@ public class Client {
     private void openAddMenu() {
         boolean doNotStop = false;
         do {
-            ContactBook.TERMINAL_COMMON.showAddMenuEnterType();
-            switch (ContactBook.TERMINAL_COMMON.getUserInput().toUpperCase()) {
+            TERMINAL_COMMON.showAddMenuEnterType();
+            switch (TERMINAL_COMMON.getUserInput().toUpperCase()) {
                 case "PERSON":
                     commandAddPerson();
                     break;
@@ -72,7 +73,7 @@ public class Client {
                 case "BACK":
                     break;
                 default:
-                    ContactBook.TERMINAL_COMMON.showWrongInput();
+                    TERMINAL_COMMON.showWrongInput();
                     doNotStop = true;
             }
         } while (doNotStop);
@@ -92,21 +93,21 @@ public class Client {
 
     private void openListMenu() {
         if (0 == CONTACT_BOOK.getContactSize()) {
-            ContactBook.TERMINAL_COMMON.showNoRecordsToShow();
+            TERMINAL_COMMON.showNoRecordsToShow();
         } else {
             boolean doNotStop = false;
             String action;
             do {
                 CONTACT_BOOK.listContacts();
-                ContactBook.TERMINAL_COMMON.showListMenuEnterAction();
-                switch (action = ContactBook.TERMINAL_COMMON.getUserInput().toUpperCase()) {
+                TERMINAL_COMMON.showListMenuEnterAction();
+                switch (action = TERMINAL_COMMON.getUserInput().toUpperCase()) {
                     case "":
                     case "NUMBER":
                         try {
-                            contactById(ContactBook.TERMINAL_COMMON.getUserInput());
+                            contactById(TERMINAL_COMMON.getUserInput());
                             break;
                         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                            ContactBook.TERMINAL_COMMON.showWrongInput();
+                            TERMINAL_COMMON.showWrongInput();
                             break;
                         }
                     case "BACK":
@@ -115,7 +116,7 @@ public class Client {
                         try {
                             contactById(action);
                         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                            ContactBook.TERMINAL_COMMON.showWrongInput();
+                            TERMINAL_COMMON.showWrongInput();
                             doNotStop = true;
                         }
                 }
@@ -138,18 +139,18 @@ public class Client {
     private void openContactMenu(int contactId) {
         boolean doNotStop = true;
         do {
-            ContactBook.TERMINAL_COMMON.showContactMenuEnterAction();
-            switch (ContactBook.TERMINAL_COMMON.getUserInput().toUpperCase()) {
+            TERMINAL_COMMON.showContactMenuEnterAction();
+            switch (TERMINAL_COMMON.getUserInput().toUpperCase()) {
                 case "EDIT":
                     Contact contact = CONTACT_BOOK.getContactById(contactId);
                     contact.showEditableFields();
                     String[] editableFields = contact.getEditableFields();
-                    String fieldForUpdate = ContactBook.TERMINAL_COMMON.getUserInput().toUpperCase();
+                    String fieldForUpdate = TERMINAL_COMMON.getUserInput().toUpperCase();
                     if (Arrays.asList(editableFields).contains(fieldForUpdate)) {
                         commandUpdate(contactId, fieldForUpdate);
                         commandShowContact(contactId);
                     } else {
-                        ContactBook.TERMINAL_COMMON.showWrongInput();
+                        TERMINAL_COMMON.showWrongInput();
                     }
                     break;
                 case "DELETE":
@@ -160,14 +161,14 @@ public class Client {
                     doNotStop = false;
                     break;
                 default:
-                    ContactBook.TERMINAL_COMMON.showWrongInput();
+                    TERMINAL_COMMON.showWrongInput();
             }
         } while (doNotStop);
     }
 
     private void commandUpdate(int contactId, String fieldForUpdate) {
-        ContactBook.TERMINAL_COMMON.showEnterField(fieldForUpdate.toLowerCase());
-        Command commandUpdate = new CommandUpdate(CONTACT_BOOK, contactId, fieldForUpdate, ContactBook.TERMINAL_COMMON.getUserInput());
+        TERMINAL_COMMON.showEnterField(fieldForUpdate.toLowerCase());
+        Command commandUpdate = new CommandUpdate(CONTACT_BOOK, contactId, fieldForUpdate, TERMINAL_COMMON.getUserInput());
         INVOKER.setCommand(commandUpdate);
         INVOKER.execute();
     }
@@ -180,16 +181,16 @@ public class Client {
 
     private void search() {
         if (0 == CONTACT_BOOK.getContactSize()) {
-            ContactBook.TERMINAL_COMMON.showNoRecordsToSearch();
+            TERMINAL_COMMON.showNoRecordsToSearch();
         } else {
-            ContactBook.TERMINAL_COMMON.showEnterSearch();
+            TERMINAL_COMMON.showEnterSearch();
             commandSearch();
             openSearchMenu();
         }
     }
 
     private void commandSearch() {
-        Command commandSearch = new CommandSearch(CONTACT_BOOK, ContactBook.TERMINAL_COMMON.getUserInput());
+        Command commandSearch = new CommandSearch(CONTACT_BOOK, TERMINAL_COMMON.getUserInput());
         INVOKER.setCommand(commandSearch);
         INVOKER.execute();
     }
@@ -198,11 +199,11 @@ public class Client {
         boolean doNotExit = false;
         String action;
         do {
-            ContactBook.TERMINAL_COMMON.showSearchEnterAction();
-            switch (action = ContactBook.TERMINAL_COMMON.getUserInput().toUpperCase()) {
+            TERMINAL_COMMON.showSearchEnterAction();
+            switch (action = TERMINAL_COMMON.getUserInput().toUpperCase()) {
                 case "":
                 case "NUMBER":
-                    contactById(ContactBook.TERMINAL_COMMON.getUserInput());
+                    contactById(TERMINAL_COMMON.getUserInput());
                     break;
                 case "BACK":
                     break;
@@ -213,7 +214,7 @@ public class Client {
                     try {
                         contactById(action);
                     } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                        ContactBook.TERMINAL_COMMON.showWrongInput();
+                        TERMINAL_COMMON.showWrongInput();
                         doNotExit = true;
                     }
             }

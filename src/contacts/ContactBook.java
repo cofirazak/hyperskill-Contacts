@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
  * Main logic of the contact book application.
  */
 public class ContactBook {
-    static final TerminalConsole TERMINAL_COMMON = new TerminalConsole();
     private static final int INITIAL_CAPACITY = 50;
     private ArrayList<Contact> contacts = new ArrayList<>(INITIAL_CAPACITY);
     private String filename;
@@ -44,34 +43,13 @@ public class ContactBook {
     }
 
     final void addPerson() {
-        Person person = new Person();
-        TERMINAL_COMMON.showEnterField("name");
-        person.setName(TERMINAL_COMMON.getUserInput());
-        TERMINAL_COMMON.showEnterField("surname");
-        person.setSurname(TERMINAL_COMMON.getUserInput());
-        TERMINAL_COMMON.showEnterField("birth date(yyyy-MM-dd)");
-        person.setBirthDate(person.tryCastStrToDate(TERMINAL_COMMON.getUserInput()));
-        TERMINAL_COMMON.showEnterField("gender(M|F)");
-        person.setGender(person.tryCastStrToGender(TERMINAL_COMMON.getUserInput()));
-        TERMINAL_COMMON.showEnterField("phone number");
-        person.setNumber(person.filterPhoneNumber(TERMINAL_COMMON.getUserInput()));
-        person.setCreationDateTime(LocalDateTime.now().withNano(0));
-        person.setLastEditDateTime(LocalDateTime.now().withNano(0));
-        contacts.add(person);
-        TERMINAL_COMMON.showContactAdded();
+        contacts.add(new ContactCreation().getContact(ContactType.PERSON));
+        Client.TERMINAL_COMMON.showContactAdded();
     }
 
     final void addOrganization() {
-        Organization organization = new Organization();
-        TERMINAL_COMMON.showEnterField("name");
-        organization.setOrganizationName(TERMINAL_COMMON.getUserInput());
-        TERMINAL_COMMON.showEnterField("address");
-        organization.setAddress(TERMINAL_COMMON.getUserInput());
-        TERMINAL_COMMON.showEnterField("phone number");
-        organization.setNumber(organization.filterPhoneNumber(TERMINAL_COMMON.getUserInput()));
-        organization.setCreationDateTime(LocalDateTime.now());
-        contacts.add(organization);
-        TERMINAL_COMMON.showContactAdded();
+        contacts.add(new ContactCreation().getContact(ContactType.ORGANIZATION));
+        Client.TERMINAL_COMMON.showContactAdded();
     }
 
     final void listContacts() {
@@ -82,7 +60,7 @@ public class ContactBook {
     }
 
     final void showContact(int inputIndex) {
-        TERMINAL_COMMON.showContact(contacts.get(inputIndex).toString());
+        Client.TERMINAL_COMMON.showContact(contacts.get(inputIndex).toString());
     }
 
     final void updateContact(int contactId, String fieldName, String newValue) {
@@ -90,17 +68,17 @@ public class ContactBook {
         contact.setFieldByName(fieldName, newValue);
         contact.setLastEditDateTime(LocalDateTime.now().withNano(0));
         contacts.set(contactId, contact);
-        TERMINAL_COMMON.showContactSaved();
+        Client.TERMINAL_COMMON.showContactSaved();
     }
 
     final boolean deleteContact(int contactIndex) {
         boolean result = false;
         if (contacts.isEmpty()) {
-            TERMINAL_COMMON.showNoContacts();
+            Client.TERMINAL_COMMON.showNoContacts();
         } else {
             try {
                 contacts.remove(contactIndex);
-                TERMINAL_COMMON.showContactRemoved();
+                Client.TERMINAL_COMMON.showContactRemoved();
                 result = true;
             } catch (IndexOutOfBoundsException e) {
                 System.out.println(e.getMessage());
@@ -115,7 +93,7 @@ public class ContactBook {
             try {
                 SerializationUtils.serialize(contacts, filename);
             } catch (IOException e) {
-                TERMINAL_COMMON.showCantSaveContacts();
+                Client.TERMINAL_COMMON.showCantSaveContacts();
             }
         }
     }
@@ -138,7 +116,7 @@ public class ContactBook {
             }
         }
         final int size = searchResult.size();
-        TERMINAL_COMMON.showFoundResults(size);
+        Client.TERMINAL_COMMON.showFoundResults(size);
         for (int i = 0; i < size; i++) {
             searchResult.get(i).showContactsListItem(i + 1);
         }
