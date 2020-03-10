@@ -1,5 +1,8 @@
 # Stuff added by me
 *jar_extract_*
+*.html
+*.xml
+*.bin
 
 # Created by https://www.gitignore.io/api/java,intellij,macOS
 # Edit at https://www.gitignore.io/?templates=java,intellij,macOS
