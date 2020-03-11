@@ -1,6 +1,6 @@
 package contacts;
 
-import clients.ContactsApp;
+import app.Contacts;
 import contactUtils.RegexValidator;
 
 import java.io.Serializable;
@@ -63,7 +63,7 @@ public abstract class Contact implements Serializable {
         if (RegexValidator.isValidPhoneNumber(number)) {
             result = number;
         } else {
-            ContactsApp.TERMINAL.showWrongNumberFormat();
+            Contacts.TERMINAL.showWrongNumberFormat();
             result = "";
         }
         return result;

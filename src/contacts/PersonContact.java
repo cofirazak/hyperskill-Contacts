@@ -1,6 +1,6 @@
 package contacts;
 
-import clients.ContactsApp;
+import app.Contacts;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -55,7 +55,7 @@ class PersonContact extends Contact {
         try {
             result = LocalDate.parse(inputDate);
         } catch (DateTimeParseException e) {
-            ContactsApp.TERMINAL.showBadDate();
+            Contacts.TERMINAL.showBadDate();
         }
         return result;
     }
@@ -65,7 +65,7 @@ class PersonContact extends Contact {
         try {
             result = Gender.valueOf(inputGender);
         } catch (IllegalArgumentException e) {
-            ContactsApp.TERMINAL.showBadGender();
+            Contacts.TERMINAL.showBadGender();
         }
         return result;
     }
@@ -77,12 +77,12 @@ class PersonContact extends Contact {
 
     @Override
     public final void showEditableFields() {
-        ContactsApp.TERMINAL.showPersonEditableFields();
+        Contacts.TERMINAL.showPersonEditableFields();
     }
 
     @Override
     public final void showContactsListItem(int index) {
-        ContactsApp.TERMINAL.showListItem(index, name, surname);
+        Contacts.TERMINAL.showListItem(index, name, surname);
     }
 
     @Override

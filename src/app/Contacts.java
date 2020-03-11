@@ -1,4 +1,4 @@
-package clients;
+package app;
 
 import commands.*;
 import contactUtils.Serialization;
@@ -13,9 +13,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ContactsApp {
+public class Contacts {
     public static final Terminal TERMINAL = new ConsoleTerminal();
-    private static final ContactsApp CONTACTS_APP = new ContactsApp();
+    private static final Contacts CONTACTS_APP = new Contacts();
     private static final ContactBook CONTACT_BOOK = new ContactBook();
     private static final Controller INVOKER = new Controller();
 

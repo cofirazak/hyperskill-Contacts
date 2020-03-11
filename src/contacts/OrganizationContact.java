@@ -1,6 +1,6 @@
 package contacts;
 
-import clients.ContactsApp;
+import app.Contacts;
 
 import java.util.Arrays;
 
@@ -38,12 +38,12 @@ class OrganizationContact extends Contact {
 
     @Override
     public final void showContactsListItem(int index) {
-        ContactsApp.TERMINAL.showListItem(index, name);
+        Contacts.TERMINAL.showListItem(index, name);
     }
 
     @Override
     public final void showEditableFields() {
-        ContactsApp.TERMINAL.showOrgEditableFields();
+        Contacts.TERMINAL.showOrgEditableFields();
     }
 
     @Override
