@@ -1,5 +1,7 @@
 package contacts;
 
+import clients.ContactsApp;
+
 import java.util.Arrays;
 
 /**
@@ -7,7 +9,7 @@ import java.util.Arrays;
  * This class describes all fields and behaviour needed for a organisation
  * to be saved in this Contact book console application.
  */
-class Organization extends Contact {
+class OrganizationContact extends Contact {
     private static final long serialVersionUID = -414925866745458581L;
     private String address;
 
@@ -15,7 +17,7 @@ class Organization extends Contact {
         this.address = address;
     }
 
-    final void setFieldByName(String fieldName, String newValue) {
+    public final void setFieldByName(String fieldName, String newValue) {
         switch (fieldName) {
             case "NAME":
                 name = newValue;
@@ -30,18 +32,18 @@ class Organization extends Contact {
     }
 
     @Override
-    final String[] getEditableFields() {
+    public final String[] getEditableFields() {
         return Arrays.stream(EditableFields.values()).map(Enum::toString).toArray(String[]::new);
     }
 
     @Override
-    final void showContactsListItem(int index) {
-        Client.TERMINAL.showListItem(index, name);
+    public final void showContactsListItem(int index) {
+        ContactsApp.TERMINAL.showListItem(index, name);
     }
 
     @Override
-    final void showEditableFields() {
-        Client.TERMINAL.showOrgEditableFields();
+    public final void showEditableFields() {
+        ContactsApp.TERMINAL.showOrgEditableFields();
     }
 
     @Override

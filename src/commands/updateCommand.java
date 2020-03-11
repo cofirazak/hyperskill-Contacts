@@ -1,4 +1,6 @@
-package contacts;
+package commands;
+
+import receivers.ContactBook;
 
 public class updateCommand implements Command {
     private ContactBook receiver;
@@ -9,7 +11,7 @@ public class updateCommand implements Command {
     private updateCommand() {
     }
 
-    updateCommand(ContactBook receiver, int contactId, String fieldForUpdate, String newValue) {
+    public updateCommand(ContactBook receiver, int contactId, String fieldForUpdate, String newValue) {
         this.receiver = receiver;
         this.contactId = contactId;
         this.fieldForUpdate = fieldForUpdate;

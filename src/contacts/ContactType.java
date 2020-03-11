@@ -1,5 +1,5 @@
 package contacts;
 
-enum ContactType {
+public enum ContactType {
     PERSON, ORGANIZATION
 }

@@ -1,4 +1,4 @@
-import contacts.Client;
+import clients.ContactsApp;
 import org.hyperskill.hstest.v6.stage.BaseStageTest;
 import org.hyperskill.hstest.v6.testcase.CheckResult;
 import org.hyperskill.hstest.v6.testcase.TestCase;
@@ -20,7 +20,7 @@ class TestClue {
 public class ContactsTest extends BaseStageTest<TestClue> {
 
     public ContactsTest() throws Exception {
-        super(Client.class);
+        super(ContactsApp.class);
     }
 
     private CheckResult splitActionsFeedback(int actualSize, int needSize) {

@@ -1,5 +1,7 @@
 package contacts;
 
+import clients.ContactsApp;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
@@ -9,7 +11,7 @@ import java.util.Arrays;
  * This class describes all fields and behaviour needed for a person
  * to be saved in this Contact book console application.
  */
-class Person extends Contact {
+class PersonContact extends Contact {
     private static final long serialVersionUID = 3725973772164558564L;
     private String surname;
     private LocalDate birthDate;
@@ -28,7 +30,7 @@ class Person extends Contact {
     }
 
     @Override
-    final void setFieldByName(String fieldName, String newValue) {
+    public final void setFieldByName(String fieldName, String newValue) {
         switch (fieldName) {
             case "NAME":
                 name = newValue;
@@ -53,7 +55,7 @@ class Person extends Contact {
         try {
             result = LocalDate.parse(inputDate);
         } catch (DateTimeParseException e) {
-            Client.TERMINAL.showBadDate();
+            ContactsApp.TERMINAL.showBadDate();
         }
         return result;
     }
@@ -63,24 +65,24 @@ class Person extends Contact {
         try {
             result = Gender.valueOf(inputGender);
         } catch (IllegalArgumentException e) {
-            Client.TERMINAL.showBadGender();
+            ContactsApp.TERMINAL.showBadGender();
         }
         return result;
     }
 
     @Override
-    final String[] getEditableFields() {
+    public final String[] getEditableFields() {
         return Arrays.stream(EditableFields.values()).map(Enum::toString).toArray(String[]::new);
     }
 
     @Override
-    final void showEditableFields() {
-        Client.TERMINAL.showPersonEditableFields();
+    public final void showEditableFields() {
+        ContactsApp.TERMINAL.showPersonEditableFields();
     }
 
     @Override
-    final void showContactsListItem(int index) {
-        Client.TERMINAL.showListItem(index, name, surname);
+    public final void showContactsListItem(int index) {
+        ContactsApp.TERMINAL.showListItem(index, name, surname);
     }
 
     @Override

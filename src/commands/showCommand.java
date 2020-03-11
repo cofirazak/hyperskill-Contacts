@@ -1,4 +1,6 @@
-package contacts;
+package commands;
+
+import receivers.ContactBook;
 
 public class showCommand implements Command {
     private ContactBook receiver;
@@ -7,7 +9,7 @@ public class showCommand implements Command {
     private showCommand() {
     }
 
-    showCommand(ContactBook receiver, int contactId) {
+    public showCommand(ContactBook receiver, int contactId) {
         this.receiver = receiver;
         this.contactId = contactId;
     }

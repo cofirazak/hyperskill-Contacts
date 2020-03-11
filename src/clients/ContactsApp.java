@@ -1,19 +1,27 @@
-package contacts;
+package clients;
+
+import commands.*;
+import contactUtils.Serialization;
+import contacts.Contact;
+import contactsIO.ConsoleTerminal;
+import contactsIO.Terminal;
+import invokers.Controller;
+import receivers.ContactBook;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Client {
-    static final Terminal TERMINAL = new ConsoleTerminal();
-    private static final Client CLIENT = new Client();
+public class ContactsApp {
+    public static final Terminal TERMINAL = new ConsoleTerminal();
+    private static final ContactsApp CONTACTS_APP = new ContactsApp();
     private static final ContactBook CONTACT_BOOK = new ContactBook();
-    private static final Invoker INVOKER = new Invoker();
+    private static final Controller INVOKER = new Controller();
 
     public static void main(String[] args) {
         loadContacts(args);
-        CLIENT.openMainMenuDialog();
+        CONTACTS_APP.openMainMenuDialog();
     }
 
     private static void loadContacts(String[] args) {
@@ -22,7 +30,7 @@ public class Client {
             CONTACT_BOOK.setFilename(givenFilename);
             try {
                 @SuppressWarnings("unchecked")
-                ArrayList<Contact> contacts = (ArrayList<Contact>) SerializationUtils.deserialize(givenFilename);
+                ArrayList<Contact> contacts = (ArrayList<Contact>) Serialization.deserialize(givenFilename);
                 CONTACT_BOOK.setContacts(contacts);
                 TERMINAL.showFileLoaded(givenFilename);
             } catch (FileNotFoundException | ClassNotFoundException e) {

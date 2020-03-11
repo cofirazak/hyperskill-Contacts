@@ -1,12 +1,14 @@
-package contacts;
+package commands;
 
-class addPersonCommand implements Command {
+import receivers.ContactBook;
+
+public class addPersonCommand implements Command {
     private ContactBook receiver;
 
     private addPersonCommand() {
     }
 
-    addPersonCommand(ContactBook receiver) {
+    public addPersonCommand(ContactBook receiver) {
         this.receiver = receiver;
     }
 

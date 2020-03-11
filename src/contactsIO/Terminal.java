@@ -1,6 +1,6 @@
-package contacts;
+package contactsIO;
 
-interface Terminal {
+public interface Terminal {
 
     String getUserInput();
 

@@ -1,4 +1,10 @@
-package contacts;
+package receivers;
+
+import clients.ContactsApp;
+import contactUtils.Serialization;
+import contacts.Contact;
+import contacts.ContactCreation;
+import contacts.ContactType;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -21,7 +27,7 @@ public class ContactBook {
      *
      * @param contacts list of contact objects.
      */
-    final void setContacts(ArrayList<Contact> contacts) {
+    public final void setContacts(ArrayList<Contact> contacts) {
         this.contacts = new ArrayList<>(contacts);
     }
 
@@ -30,55 +36,55 @@ public class ContactBook {
      *
      * @param filename name of file to save contacts to.
      */
-    final void setFilename(String filename) {
+    public final void setFilename(String filename) {
         this.filename = filename;
     }
 
-    final int getContactSize() {
+    public final int getContactSize() {
         return contacts.size();
     }
 
-    final Contact getContactById(int contactId) {
+    public final Contact getContactById(int contactId) {
         return contacts.get(contactId);
     }
 
-    final void addPerson() {
+    public final void addPerson() {
         contacts.add(new ContactCreation().getContact(ContactType.PERSON));
-        Client.TERMINAL.showContactAdded();
+        ContactsApp.TERMINAL.showContactAdded();
     }
 
-    final void addOrganization() {
+    public final void addOrganization() {
         contacts.add(new ContactCreation().getContact(ContactType.ORGANIZATION));
-        Client.TERMINAL.showContactAdded();
+        ContactsApp.TERMINAL.showContactAdded();
     }
 
-    final void listContacts() {
+    public final void listContacts() {
         final int size = contacts.size();
         for (int i = 0; i < size; i++) {
             contacts.get(i).showContactsListItem(i + 1);
         }
     }
 
-    final void showContact(int inputIndex) {
-        Client.TERMINAL.showContact(contacts.get(inputIndex).toString());
+    public final void showContact(int inputIndex) {
+        ContactsApp.TERMINAL.showContact(contacts.get(inputIndex).toString());
     }
 
-    final void updateContact(int contactId, String fieldName, String newValue) {
+    public final void updateContact(int contactId, String fieldName, String newValue) {
         Contact contact = contacts.get(contactId);
         contact.setFieldByName(fieldName, newValue);
         contact.setLastEditDateTime(LocalDateTime.now().withNano(0));
         contacts.set(contactId, contact);
-        Client.TERMINAL.showContactSaved();
+        ContactsApp.TERMINAL.showContactSaved();
     }
 
-    final boolean deleteContact(int contactIndex) {
+    public final boolean deleteContact(int contactIndex) {
         boolean result = false;
         if (contacts.isEmpty()) {
-            Client.TERMINAL.showNoContacts();
+            ContactsApp.TERMINAL.showNoContacts();
         } else {
             try {
                 contacts.remove(contactIndex);
-                Client.TERMINAL.showContactRemoved();
+                ContactsApp.TERMINAL.showContactRemoved();
                 result = true;
             } catch (IndexOutOfBoundsException e) {
                 System.out.println(e.getMessage());
@@ -88,17 +94,17 @@ public class ContactBook {
         return result;
     }
 
-    final void serialize() {
+    public final void serialize() {
         if (null != filename) {
             try {
-                SerializationUtils.serialize(contacts, filename);
+                Serialization.serialize(contacts, filename);
             } catch (IOException e) {
-                Client.TERMINAL.showCantSaveContacts();
+                ContactsApp.TERMINAL.showCantSaveContacts();
             }
         }
     }
 
-    final void searchContact(String searchStr) {
+    public final void searchContact(String searchStr) {
         Pattern searchQuery = Pattern.compile(".*" + searchStr + ".*", Pattern.CASE_INSENSITIVE);
         List<Contact> searchResult = new ArrayList<>(INITIAL_CAPACITY);
         for (Contact contact : contacts) {
@@ -116,7 +122,7 @@ public class ContactBook {
             }
         }
         final int size = searchResult.size();
-        Client.TERMINAL.showFoundResults(size);
+        ContactsApp.TERMINAL.showFoundResults(size);
         for (int i = 0; i < size; i++) {
             searchResult.get(i).showContactsListItem(i + 1);
         }

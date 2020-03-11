@@ -1,15 +1,15 @@
-package contacts;
+package contactUtils;
 
 import java.io.*;
 
 /**
  * Util class for easy serialisation/deserialization of objects.
  */
-final class SerializationUtils {
-    private SerializationUtils() {
+public final class Serialization {
+    private Serialization() {
     }
 
-    static void serialize(Object obj, String fileName) throws IOException {
+    public static void serialize(Object obj, String fileName) throws IOException {
         FileOutputStream fos = new FileOutputStream(fileName);
         BufferedOutputStream bos = new BufferedOutputStream(fos);
         try (ObjectOutput oos = new ObjectOutputStream(bos)) {
@@ -17,7 +17,7 @@ final class SerializationUtils {
         }
     }
 
-    static Object deserialize(String fileName) throws IOException, ClassNotFoundException {
+    public static Object deserialize(String fileName) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(fileName);
         BufferedInputStream bis = new BufferedInputStream(fis);
         try (ObjectInput ois = new ObjectInputStream(bis)) {

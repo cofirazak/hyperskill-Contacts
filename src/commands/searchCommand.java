@@ -1,4 +1,6 @@
-package contacts;
+package commands;
+
+import receivers.ContactBook;
 
 public class searchCommand implements Command {
     private ContactBook receiver;
@@ -7,7 +9,7 @@ public class searchCommand implements Command {
     private searchCommand() {
     }
 
-    searchCommand(ContactBook receiver, String searchString) {
+    public searchCommand(ContactBook receiver, String searchString) {
         this.receiver = receiver;
         this.searchString = searchString;
     }

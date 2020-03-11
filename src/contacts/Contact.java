@@ -1,5 +1,8 @@
 package contacts;
 
+import clients.ContactsApp;
+import contactUtils.RegexValidator;
+
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
@@ -13,7 +16,7 @@ import static java.lang.reflect.Modifier.isProtected;
 /**
  * Abstraction for concrete realisation of contact types like Person and Organization.
  */
-abstract class Contact implements Serializable {
+public abstract class Contact implements Serializable {
     private static final long serialVersionUID = -6974594304581876842L;
     protected String name;
     protected String number;
@@ -32,13 +35,13 @@ abstract class Contact implements Serializable {
         this.creationDateTime = creationDateTime;
     }
 
-    final void setLastEditDateTime(LocalDateTime lastEditDateTime) {
+    public final void setLastEditDateTime(LocalDateTime lastEditDateTime) {
         this.lastEditDateTime = lastEditDateTime;
     }
 
-    abstract void setFieldByName(String fieldName, String newValue);
+    public abstract void setFieldByName(String fieldName, String newValue);
 
-    final List<Field> getAllFieldNames() {
+    public final List<Field> getAllFieldNames() {
         final List<Field> allFields = new ArrayList<>(30);
         Collections.addAll(allFields, getClass().getDeclaredFields());
         Class<?> currentClass = getClass().getSuperclass();
@@ -53,20 +56,20 @@ abstract class Contact implements Serializable {
         return allFields;
     }
 
-    abstract String[] getEditableFields();
+    public abstract String[] getEditableFields();
 
     final String filterPhoneNumber(String number) {
         String result;
         if (RegexValidator.isValidPhoneNumber(number)) {
             result = number;
         } else {
-            Client.TERMINAL.showWrongNumberFormat();
+            ContactsApp.TERMINAL.showWrongNumberFormat();
             result = "";
         }
         return result;
     }
 
-    abstract void showContactsListItem(int index);
+    public abstract void showContactsListItem(int index);
 
-    abstract void showEditableFields();
+    public abstract void showEditableFields();
 }

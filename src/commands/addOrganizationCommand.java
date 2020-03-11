@@ -1,12 +1,14 @@
-package contacts;
+package commands;
 
-class addOrganizationCommand implements Command {
+import receivers.ContactBook;
+
+public class addOrganizationCommand implements Command {
     private ContactBook receiver;
 
     private addOrganizationCommand() {
     }
 
-    addOrganizationCommand(ContactBook receiver) {
+    public addOrganizationCommand(ContactBook receiver) {
         this.receiver = receiver;
     }
 

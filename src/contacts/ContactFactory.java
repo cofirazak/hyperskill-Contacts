@@ -1,12 +1,14 @@
 package contacts;
 
+import clients.ContactsApp;
+
 import java.time.LocalDateTime;
 
 abstract class ContactFactory {
-    final Contact getContact(ContactType type) {
+    public final Contact getContact(ContactType type) {
         Contact contact = createContact(type);
-        Client.TERMINAL.showEnterField("phone number");
-        contact.setNumber(contact.filterPhoneNumber(Client.TERMINAL.getUserInput()));
+        ContactsApp.TERMINAL.showEnterField("phone number");
+        contact.setNumber(contact.filterPhoneNumber(ContactsApp.TERMINAL.getUserInput()));
         contact.setCreationDateTime(LocalDateTime.now().withNano(0));
         contact.setLastEditDateTime(LocalDateTime.now().withNano(0));
         return contact;
