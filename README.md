@@ -7,8 +7,10 @@ This is a console java application to create contacts (like on the mobile phone)
 ### Java version
 This project uses java 11
 
-### Used design patterns
-Command pattern
+## Used design patterns
+Command
+
+Abstract Method
 
 ### Used features
 This project is based on technologies like:
