@@ -1,13 +1,13 @@
 package contacts;
 
-public class CommandSearch implements Command {
+public class searchCommand implements Command {
     private ContactBook receiver;
     private String searchString;
 
-    private CommandSearch() {
+    private searchCommand() {
     }
 
-    CommandSearch(ContactBook receiver, String searchString) {
+    searchCommand(ContactBook receiver, String searchString) {
         this.receiver = receiver;
         this.searchString = searchString;
     }

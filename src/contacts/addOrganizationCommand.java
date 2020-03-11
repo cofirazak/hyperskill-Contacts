@@ -1,18 +1,18 @@
 package contacts;
 
-class CommandAddPerson implements Command {
+class addOrganizationCommand implements Command {
     private ContactBook receiver;
 
-    private CommandAddPerson() {
+    private addOrganizationCommand() {
     }
 
-    CommandAddPerson(ContactBook receiver) {
+    addOrganizationCommand(ContactBook receiver) {
         this.receiver = receiver;
     }
 
     @Override
     public final void execute() {
-        receiver.addPerson();
+        receiver.addOrganization();
         receiver.serialize();
     }
 }

@@ -36,12 +36,12 @@ class Organization extends Contact {
 
     @Override
     final void showContactsListItem(int index) {
-        Client.TERMINAL_COMMON.showListItem(index, name);
+        Client.TERMINAL.showListItem(index, name);
     }
 
     @Override
     final void showEditableFields() {
-        Client.TERMINAL_COMMON.showOrgEditableFields();
+        Client.TERMINAL.showOrgEditableFields();
     }
 
     @Override

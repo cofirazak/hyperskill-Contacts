@@ -53,7 +53,7 @@ class Person extends Contact {
         try {
             result = LocalDate.parse(inputDate);
         } catch (DateTimeParseException e) {
-            Client.TERMINAL_COMMON.showBadDate();
+            Client.TERMINAL.showBadDate();
         }
         return result;
     }
@@ -63,7 +63,7 @@ class Person extends Contact {
         try {
             result = Gender.valueOf(inputGender);
         } catch (IllegalArgumentException e) {
-            Client.TERMINAL_COMMON.showBadGender();
+            Client.TERMINAL.showBadGender();
         }
         return result;
     }
@@ -75,12 +75,12 @@ class Person extends Contact {
 
     @Override
     final void showEditableFields() {
-        Client.TERMINAL_COMMON.showPersonEditableFields();
+        Client.TERMINAL.showPersonEditableFields();
     }
 
     @Override
     final void showContactsListItem(int index) {
-        Client.TERMINAL_COMMON.showListItem(index, name, surname);
+        Client.TERMINAL.showListItem(index, name, surname);
     }
 
     @Override

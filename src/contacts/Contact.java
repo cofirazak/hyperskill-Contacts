@@ -60,7 +60,7 @@ abstract class Contact implements Serializable {
         if (RegexValidator.isValidPhoneNumber(number)) {
             result = number;
         } else {
-            Client.TERMINAL_COMMON.showWrongNumberFormat();
+            Client.TERMINAL.showWrongNumberFormat();
             result = "";
         }
         return result;

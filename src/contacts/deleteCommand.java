@@ -1,13 +1,13 @@
 package contacts;
 
-public class CommandDelete implements Command {
+public class deleteCommand implements Command {
     private ContactBook receiver;
     private int contactId;
 
-    private CommandDelete() {
+    private deleteCommand() {
     }
 
-    CommandDelete(ContactBook receiver, int contactId) {
+    deleteCommand(ContactBook receiver, int contactId) {
         this.receiver = receiver;
         this.contactId = contactId;
     }

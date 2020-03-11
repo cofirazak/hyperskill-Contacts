@@ -3,7 +3,7 @@ package contacts;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class TerminalConsole implements TerminalCommon {
+public class ConsoleTerminal implements Terminal {
     @Override
     public final String getUserInput() {
         try (final Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8)) {

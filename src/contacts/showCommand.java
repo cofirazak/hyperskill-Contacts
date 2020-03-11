@@ -1,13 +1,13 @@
 package contacts;
 
-public class CommandShow implements Command {
+public class showCommand implements Command {
     private ContactBook receiver;
     private int contactId;
 
-    private CommandShow() {
+    private showCommand() {
     }
 
-    CommandShow(ContactBook receiver, int contactId) {
+    showCommand(ContactBook receiver, int contactId) {
         this.receiver = receiver;
         this.contactId = contactId;
     }
